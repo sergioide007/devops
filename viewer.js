@@ -92,13 +92,6 @@
       return;
     }
 
-    // Configure marked
-    marked.setOptions({
-      breaks: false,
-      gfm: true,
-      headerIds: true,
-    });
-
     const html = marked.parse(md);
     const file = cfg.files[idx];
 
@@ -204,6 +197,7 @@
 
   // ── INIT ─────────────────────────────────────────────────────────
   function init() {
+    marked.use({ gfm: true, breaks: false });
     buildNav();
 
     // Load from URL hash or default to first file
