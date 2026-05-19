@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compliance Frameworks — DevOps · SpecSolid</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../devops.css">
+<script src="https://cdn.jsdelivr.net/npm/marked@9.1.6/marked.min.js"></script>
+</head>
+<body>
+<header>
+  <div class="nav-inner">
+    <button class="mobile-toggle" onclick="dvToggle()">☰</button>
+    <a href="../../specsolid/" class="brand">SPEC<span>SOLID</span><span class="sep">/</span>devops<span class="sep">/</span><span class="cur">compliance</span></a>
+    <div class="nav-right">
+      <a href="../" class="btn btn-o">← All Sections</a>
+      <a href="../../specsolid/" class="btn btn-p">SpecSolid</a>
+    </div>
+  </div>
+</header>
+<div class="sidebar-overlay" id="dvOverlay"></div>
+<div class="layout">
+  <aside class="sidebar" id="dvSidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-title">Section 12</div>
+      <div class="sidebar-section" id="dvSectionName">Compliance Frameworks</div>
+    </div>
+    <nav class="sidebar-nav" id="dvNav"></nav>
+    <div class="sidebar-foot">
+      <a href="../" class="sidebar-back">← DevOps Hub</a>
+    </div>
+  </aside>
+  <main class="content" id="dvContent">
+    <div class="content-empty">
+      <div class="spinner"></div>
+    </div>
+  </main>
+</div>
+<script>
+window.DEVOPS_SECTION = {
+  title: "Compliance Frameworks",
+  path: "../12-compliance-frameworks",
+  files: [
+    { slug: "overview",            file: "README.md",                 title: "Section Overview" },
+    { slug: "iso27001",            file: "01-iso27001.md",            title: "ISO 27001 — Information Security" },
+    { slug: "iso22301",            file: "02-iso22301.md",            title: "ISO 22301 — Business Continuity" },
+    { slug: "iso9001",             file: "03-iso9001.md",             title: "ISO 9001 — Quality Management" },
+    { slug: "togaf",               file: "04-togaf.md",               title: "TOGAF — Enterprise Architecture" },
+    { slug: "bian",                file: "05-bian.md",                title: "BIAN — Banking Industry" },
+    { slug: "pci-dss",             file: "06-pci-dss.md",             title: "PCI-DSS — Payment Security" },
+    { slug: "gdpr-ccpa",           file: "07-gdpr-ccpa.md",           title: "GDPR & CCPA — Data Privacy" },
+    { slug: "sector-banking",      file: "08-sector-banking.md",      title: "Banking Sector Compliance" },
+    { slug: "sector-retail",       file: "09-sector-retail.md",       title: "Retail Sector Compliance" },
+    { slug: "compliance-pipeline", file: "10-compliance-pipeline.md", title: "Compliance Pipeline" }
+  ]
+};
+</script>
+<script src="../viewer.js"></script>
+</body>
+</html>

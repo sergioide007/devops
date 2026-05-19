@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DevOps Engineering — From Zero to Senior · SpecSolid</title>
+<meta name="description" content="Complete DevOps curriculum: Linux, AWS, Kubernetes, Terraform, CI/CD, Observability, Compliance. 12 sections, 41+ guides, real commands. Built by SpecSolid.">
+<meta name="author" content="SpecSolid">
+<meta name="theme-color" content="#050a14">
+<link rel="icon" type="image/svg+xml" href="https://www.specsolid.com/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;600&family=IBM+Plex+Sans:wght@300;400;600;700;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#050a14;--paper:#f4f1eb;
+  --signal:#00e5a0;--signal-dim:#00a872;
+  --accent:#ff4b6e;--blue:#1a5fe4;--warn:#f59e0b;
+  --muted:#6b7280;--muted-lt:#9ca3af;--text:#e6edf3;
+  --s1:#0d1117;--s2:#161b22;--s3:#21262d;--s4:#30363d;
+  --border:rgba(255,255,255,.07);
+  --radius:8px;
+  --mono:'IBM Plex Mono',monospace;
+  --sans:'IBM Plex Sans',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--ink);color:var(--text);min-height:100vh;font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--signal);text-decoration:none}
+a:hover{text-decoration:underline}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--s1)}
+::-webkit-scrollbar-thumb{background:var(--s4);border-radius:3px}
+
+/* NAV */
+header{position:sticky;top:0;z-index:100;background:rgba(5,10,20,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1240px;margin:0 auto;padding:0 24px;height:58px;display:flex;align-items:center;gap:0}
+.brand{font-family:var(--mono);font-size:14px;font-weight:600;color:var(--text);letter-spacing:.04em;margin-right:32px;white-space:nowrap;text-decoration:none}
+.brand span{color:var(--signal)}
+.brand .sep{color:var(--muted);margin:0 8px;font-weight:300}
+.brand .sub{color:var(--muted-lt)}
+.nav-links{display:flex;gap:0;flex:1}
+.nav-link{color:var(--muted-lt);font-size:13px;padding:0 14px;height:58px;white-space:nowrap;transition:color .15s;border-bottom:2px solid transparent;font-weight:500;text-decoration:none;display:flex;align-items:center}
+.nav-link:hover{color:#fff;text-decoration:none}
+.nav-link.active{color:var(--signal);border-bottom-color:var(--signal)}
+.nav-cta{margin-left:auto;display:flex;align-items:center;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border-radius:var(--radius);font-size:13px;font-weight:600;cursor:pointer;border:none;transition:transform .12s,box-shadow .12s;font-family:var(--sans);text-decoration:none;white-space:nowrap}
+.btn:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,0,0,.3);text-decoration:none}
+.btn-p{background:var(--signal);color:var(--ink)}
+.btn-o{background:transparent;color:var(--text);border:1.5px solid var(--border)}
+.btn-o:hover{border-color:var(--signal);color:var(--signal)}
+.btn-sm{padding:7px 14px;font-size:12px}
+.hamburger{display:none;background:none;border:none;color:var(--text);font-size:18px;cursor:pointer;padding:6px}
+.mobile-menu{display:none;position:fixed;top:58px;left:0;right:0;background:var(--s1);border-bottom:1px solid var(--border);padding:16px 24px;flex-direction:column;gap:4px;z-index:99}
+.mobile-menu.open{display:flex}
+.mobile-link{color:var(--muted-lt);font-size:14px;padding:10px 0;border-bottom:1px solid var(--border);text-decoration:none;transition:color .15s}
+.mobile-link:hover{color:var(--signal);text-decoration:none}
+
+/* HERO */
+.hero-wrap{position:relative;overflow:hidden;padding:88px 24px 80px;text-align:center}
+.hero-wrap::before{content:'';position:absolute;inset:0;background:
+  radial-gradient(ellipse 80% 60% at 50% 0%,rgba(0,229,160,.07) 0%,transparent 60%),
+  radial-gradient(ellipse 50% 40% at 20% 80%,rgba(26,95,228,.07) 0%,transparent 55%),
+  radial-gradient(ellipse 50% 40% at 80% 80%,rgba(139,92,246,.06) 0%,transparent 55%);
+  pointer-events:none}
+.hero-grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(0,229,160,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,160,.03) 1px,transparent 1px);background-size:56px 56px;pointer-events:none;mask-image:radial-gradient(ellipse 80% 70% at 50% 0%,black 0%,transparent 70%)}
+.eyebrow{font-family:var(--mono);font-size:11px;color:var(--signal);letter-spacing:.2em;text-transform:uppercase;margin-bottom:24px;display:flex;align-items:center;justify-content:center;gap:12px}
+.eyebrow::before,.eyebrow::after{content:'';display:inline-block;width:32px;height:1px;background:var(--signal);opacity:.5}
+.hero-title{font-family:'Space Grotesk',var(--sans);font-size:clamp(2.8rem,7vw,6rem);font-weight:700;letter-spacing:-.04em;line-height:1.05;margin-bottom:24px;position:relative}
+.hero-title .grad{background:linear-gradient(130deg,var(--signal) 0%,#60a5fa 50%,#a78bfa 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:17px;color:rgba(255,255,255,.55);max-width:580px;margin:0 auto 40px;line-height:1.75}
+.hero-ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:56px}
+
+/* TERMINAL BLOCK */
+.terminal{background:var(--s1);border:1px solid var(--border);border-radius:12px;max-width:560px;margin:0 auto;text-align:left;overflow:hidden}
+.terminal-bar{background:var(--s2);padding:10px 16px;display:flex;align-items:center;gap:8px}
+.t-dot{width:11px;height:11px;border-radius:50%}
+.t-dot.r{background:#ff5f57}
+.t-dot.y{background:#febc2e}
+.t-dot.g{background:#28c840}
+.terminal-body{padding:18px 20px;font-family:var(--mono);font-size:13px;line-height:1.9}
+.tc-g{color:var(--signal)}
+.tc-b{color:#60a5fa}
+.tc-y{color:#fcd34d}
+.tc-m{color:var(--muted)}
+.tc-w{color:rgba(255,255,255,.8)}
+.t-cursor{display:inline-block;width:7px;height:14px;background:var(--signal);vertical-align:middle;margin-left:2px;animation:blink .9s step-end infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+/* MARQUEE */
+.marquee-strip{overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:11px 0;background:rgba(255,255,255,.01);margin-top:64px}
+.marquee-track{display:inline-flex;white-space:nowrap;animation:mrun 32s linear infinite}
+.marquee-track:hover{animation-play-state:paused}
+@keyframes mrun{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.marquee-item{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.18em;color:var(--muted);padding:0 28px}
+.marquee-dot{color:rgba(0,229,160,.3);padding:0 4px}
+
+/* STATS BAR */
+.stats-bar{display:flex;gap:0;border-bottom:1px solid var(--border);background:var(--s1)}
+.stat-item{flex:1;padding:20px 24px;border-right:1px solid var(--border);text-align:center}
+.stat-item:last-child{border-right:none}
+.stat-num{font-family:'Space Grotesk',var(--mono);font-size:28px;font-weight:700;color:var(--signal);line-height:1}
+.stat-lbl{font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:4px}
+
+/* SECTIONS */
+section{padding:72px 24px}
+.inner{max-width:1200px;margin:0 auto}
+.section-label{font-family:var(--mono);font-size:11px;color:var(--signal);letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.section-label::before{content:'';display:inline-block;width:20px;height:1px;background:var(--signal)}
+.section-h2{font-size:clamp(22px,3.5vw,36px);font-weight:800;letter-spacing:-.02em;line-height:1.2;margin-bottom:12px}
+.section-sub{font-size:15px;color:rgba(255,255,255,.5);max-width:600px;line-height:1.7;margin-bottom:48px}
+
+/* CARDS GRID */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px}
+.card{background:var(--s1);border:1px solid var(--border);border-radius:14px;padding:28px;transition:transform .2s,border-color .2s,box-shadow .2s;position:relative;overflow:hidden;display:flex;flex-direction:column;text-decoration:none;color:var(--text)}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;opacity:0;transition:opacity .2s;background:var(--signal)}
+.card:hover{transform:translateY(-4px);border-color:rgba(0,229,160,.25);box-shadow:0 12px 40px rgba(0,0,0,.4);text-decoration:none;color:var(--text)}
+.card:hover::before{opacity:1}
+.card-head{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px}
+.card-num{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.08em}
+.card-icon{font-size:26px}
+.card h3{font-size:17px;font-weight:700;margin-bottom:8px;letter-spacing:-.01em}
+.card p{font-size:13px;color:rgba(255,255,255,.45);line-height:1.65;margin-bottom:20px;flex:1}
+.card-footer{display:flex;align-items:center;justify-content:space-between;margin-top:auto}
+.card-files{font-family:var(--mono);font-size:10px;color:var(--muted)}
+.tag{display:inline-block;font-family:var(--mono);font-size:10px;padding:3px 9px;border-radius:4px;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+.tag-g{background:rgba(0,229,160,.12);color:var(--signal)}
+.tag-b{background:rgba(26,95,228,.2);color:#60a5fa}
+.tag-w{background:rgba(245,158,11,.18);color:#fcd34d}
+.tag-r{background:rgba(255,75,110,.15);color:#ff7070}
+.tag-v{background:rgba(139,92,246,.2);color:#a78bfa}
+
+/* LEARNING PATH */
+.path-section{background:var(--s1);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.path-track{display:flex;align-items:stretch;gap:0;margin-top:48px;overflow-x:auto;padding-bottom:4px}
+.path-step{flex:1;min-width:160px;padding:24px 20px;position:relative;border-right:1px solid var(--border)}
+.path-step:last-child{border-right:none}
+.path-step::after{content:'→';position:absolute;right:-12px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:16px;z-index:1}
+.path-step:last-child::after{display:none}
+.path-level{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.path-step:nth-child(1) .path-level{color:var(--signal)}
+.path-step:nth-child(2) .path-level{color:#60a5fa}
+.path-step:nth-child(3) .path-level{color:#fcd34d}
+.path-step:nth-child(4) .path-level{color:#a78bfa}
+.path-step:nth-child(5) .path-level{color:#ff7070}
+.path-topics{display:flex;flex-direction:column;gap:6px}
+.path-topic{font-size:12px;color:rgba(255,255,255,.55);display:flex;align-items:center;gap:6px}
+.path-topic::before{content:'·';color:var(--signal-dim);flex-shrink:0}
+
+/* CALLOUT */
+.callout{background:var(--ink);border:1px solid rgba(0,229,160,.15);border-radius:16px;padding:56px 48px;text-align:center;position:relative;overflow:hidden;margin-top:64px}
+.callout::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 50%,rgba(0,229,160,.06),transparent 55%),radial-gradient(circle at 70% 50%,rgba(26,95,228,.06),transparent 55%);pointer-events:none}
+.callout h2{font-size:clamp(22px,3vw,36px);font-weight:800;letter-spacing:-.02em;margin-bottom:16px;position:relative}
+.callout p{font-size:15px;color:rgba(255,255,255,.5);max-width:520px;margin:0 auto 32px;line-height:1.7;position:relative}
+.callout .ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative}
+
+/* SPECSOLID BRIDGE */
+.bridge{display:flex;align-items:center;gap:16px;background:rgba(0,229,160,.04);border:1px solid rgba(0,229,160,.12);border-radius:12px;padding:20px 24px;margin-bottom:48px;text-decoration:none;transition:border-color .2s,background .2s}
+.bridge:hover{border-color:rgba(0,229,160,.3);background:rgba(0,229,160,.07);text-decoration:none}
+.bridge-logo{font-family:var(--mono);font-size:13px;font-weight:600;color:var(--text);white-space:nowrap}
+.bridge-logo span{color:var(--signal)}
+.bridge-sep{width:1px;height:28px;background:var(--border)}
+.bridge-text{font-size:13px;color:rgba(255,255,255,.45)}
+.bridge-arrow{margin-left:auto;color:var(--signal);font-family:var(--mono);font-size:12px;white-space:nowrap}
+
+/* FOOTER */
+footer{background:var(--ink);border-top:1px solid var(--border);padding:48px 24px 32px}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-top h4{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:14px}
+.footer-link{display:block;font-size:13px;color:rgba(255,255,255,.45);margin-bottom:8px;transition:color .15s;text-decoration:none}
+.footer-link:hover{color:var(--signal);text-decoration:none}
+.footer-bottom{border-top:1px solid var(--border);padding-top:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.footer-copy{font-family:var(--mono);font-size:11px;color:var(--muted)}
+
+/* RESPONSIVE */
+@media(max-width:960px){
+  .stats-bar{flex-wrap:wrap}
+  .stat-item{min-width:50%;border-bottom:1px solid var(--border)}
+  .footer-top{grid-template-columns:1fr 1fr}
+  .path-track{flex-wrap:nowrap}
+}
+@media(max-width:720px){
+  .nav-links{display:none}
+  .hamburger{display:block}
+  .footer-top{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;align-items:flex-start}
+  .callout{padding:36px 24px}
+  .stats-bar{flex-direction:column}
+  .stat-item{border-right:none}
+  .bridge{flex-wrap:wrap}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <a href="https://www.specsolid.com/" class="brand">SPEC<span>SOLID</span><span class="sep">/</span><span class="sub">devops</span></a>
+    <nav class="nav-links">
+      <a href="#foundations" class="nav-link">Foundations</a>
+      <a href="#cloud" class="nav-link">Cloud</a>
+      <a href="#cicd" class="nav-link">CI/CD</a>
+      <a href="#advanced" class="nav-link">Advanced</a>
+      <a href="#compliance" class="nav-link">Compliance</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="https://www.specsolid.com/" class="btn btn-o btn-sm">← SpecSolid</a>
+      <a href="https://github.com/sergioide007" target="_blank" class="btn btn-p btn-sm">GitHub →</a>
+    </div>
+    <button class="hamburger" onclick="document.getElementById('mm').classList.toggle('open')" aria-label="Menu">☰</button>
+  </div>
+  <div class="mobile-menu" id="mm">
+    <a href="#foundations" class="mobile-link" onclick="document.getElementById('mm').classList.remove('open')">Foundations</a>
+    <a href="#cloud" class="mobile-link" onclick="document.getElementById('mm').classList.remove('open')">Cloud</a>
+    <a href="#cicd" class="mobile-link" onclick="document.getElementById('mm').classList.remove('open')">CI/CD</a>
+    <a href="#advanced" class="mobile-link" onclick="document.getElementById('mm').classList.remove('open')">Advanced</a>
+    <a href="#compliance" class="mobile-link" onclick="document.getElementById('mm').classList.remove('open')">Compliance</a>
+    <a href="https://www.specsolid.com/" class="mobile-link">← SpecSolid</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero-wrap">
+  <div class="hero-grid-bg"></div>
+
+  <div class="eyebrow">DevOps Engineering · Senior Level · Real Commands</div>
+
+  <h1 class="hero-title">
+    DevOps<br>
+    <span class="grad" id="roulette">from Zero to Senior</span>
+  </h1>
+  <p class="hero-sub">
+    The complete curriculum that takes you from Linux fundamentals to
+    production-grade Kubernetes, AWS, CI/CD, observability, and
+    enterprise compliance — every command is real, every script works.
+  </p>
+  <div class="hero-ctas">
+    <a href="foundations/" class="btn btn-p">Start Learning →</a>
+    <a href="#sections" class="btn btn-o">Browse All 12 Sections</a>
+  </div>
+
+  <!-- Terminal -->
+  <div class="terminal">
+    <div class="terminal-bar">
+      <div class="t-dot r"></div>
+      <div class="t-dot y"></div>
+      <div class="t-dot g"></div>
+      <span style="font-family:var(--mono);font-size:11px;color:var(--muted);margin-left:8px">devops-curriculum</span>
+    </div>
+    <div class="terminal-body" id="termBody">
+      <span class="tc-g">$</span> <span class="tc-w">devops --level senior --mode interactive</span><br>
+      <span class="tc-m">▸ Loading curriculum...</span><br>
+      <span class="tc-m">▸ 12 sections · 41+ guides · 302KB knowledge</span><br>
+      <span class="tc-m">▸ Environments: on-premise, cloud, hybrid</span><br>
+      <span class="tc-b">✓</span> <span class="tc-w">Foundations · Linux · AWS · Kubernetes</span><br>
+      <span class="tc-b">✓</span> <span class="tc-w">CI/CD · Terraform · Observability · GitOps</span><br>
+      <span class="tc-b">✓</span> <span class="tc-w">ISO 27001 · PCI-DSS · GDPR · BIAN · TOGAF</span><br>
+      <span class="tc-g">▶</span> <span class="tc-w">Ready. Select a section to begin.</span> <span class="t-cursor"></span>
+    </div>
+  </div>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-track">
+    <span class="marquee-item">Linux</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">Kubernetes</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">Terraform</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">Ansible</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">AWS EKS</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">Jenkins</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">GitHub Actions</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">Prometheus</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">Grafana</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">ISO 27001</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">PCI-DSS</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">GDPR</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">BIAN</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">TOGAF</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">ArgoCD</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">DevSecOps</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">Linux</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">Kubernetes</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">Terraform</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">Ansible</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">AWS EKS</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">Jenkins</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">GitHub Actions</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">Prometheus</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">Grafana</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">ISO 27001</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">PCI-DSS</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">GDPR</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">BIAN</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">ArgoCD</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">DevSecOps</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">TOGAF</span><span class="marquee-dot">◆</span>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-num">12</div>
+    <div class="stat-lbl">Sections</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">41+</div>
+    <div class="stat-lbl">Complete Guides</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">302KB</div>
+    <div class="stat-lbl">Knowledge Base</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">3</div>
+    <div class="stat-lbl">Environments</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">7</div>
+    <div class="stat-lbl">Compliance Standards</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">A1/A2</div>
+    <div class="stat-lbl">English Level</div>
+  </div>
+</div>
+
+<!-- SECTIONS -->
+<section id="sections">
+  <div class="inner">
+
+    <a href="https://www.specsolid.com/" class="bridge">
+      <div class="bridge-logo">SPEC<span>SOLID</span></div>
+      <div class="bridge-sep"></div>
+      <div class="bridge-text">Part of the SpecSolid engineering curriculum — Spec-Driven DevOps, AI-powered tools, senior architecture.</div>
+      <div class="bridge-arrow">specsolid.com →</div>
+    </a>
+
+    <div class="section-label">The Curriculum</div>
+    <h2 class="section-h2">12 Sections. <em style="color:var(--signal)">One clear path</em> to senior.</h2>
+    <p class="section-sub">From your first Linux command to building a PCI-DSS compliant banking platform on AWS. Every step is practical, every command is real.</p>
+
+    <div class="cards-grid" id="cardsGrid"></div>
+  </div>
+</section>
+
+<!-- LEARNING PATH -->
+<section class="path-section" id="foundations">
+  <div class="inner">
+    <div class="section-label">Learning Path</div>
+    <h2 class="section-h2">Beginner → Expert progression</h2>
+    <p class="section-sub">Follow the path in order, or jump to any section you need. Each builds on the previous.</p>
+
+    <div class="path-track">
+      <div class="path-step">
+        <div class="path-level">Beginner</div>
+        <div class="path-topics">
+          <div class="path-topic">Linux fundamentals</div>
+          <div class="path-topic">Networking basics</div>
+          <div class="path-topic">Bash scripting</div>
+          <div class="path-topic">YAML / JSON</div>
+          <div class="path-topic">Git & GitHub</div>
+        </div>
+      </div>
+      <div class="path-step">
+        <div class="path-level">Intermediate</div>
+        <div class="path-topics">
+          <div class="path-topic">AWS (IAM, VPC, EKS)</div>
+          <div class="path-topic">Docker + Kubernetes</div>
+          <div class="path-topic">CI/CD pipelines</div>
+          <div class="path-topic">Terraform + Ansible</div>
+          <div class="path-topic">Prometheus + Grafana</div>
+        </div>
+      </div>
+      <div class="path-step">
+        <div class="path-level">Advanced</div>
+        <div class="path-topics">
+          <div class="path-topic">GitOps (ArgoCD)</div>
+          <div class="path-topic">DevSecOps</div>
+          <div class="path-topic">AI Agents (Claude)</div>
+          <div class="path-topic">IoT / Drones</div>
+          <div class="path-topic">Multi-cloud</div>
+        </div>
+      </div>
+      <div class="path-step">
+        <div class="path-level">Professional</div>
+        <div class="path-topics">
+          <div class="path-topic">Interview prep</div>
+          <div class="path-topic">Real-world cases</div>
+          <div class="path-topic">Alpaquitay AI</div>
+          <div class="path-topic">Production tools</div>
+          <div class="path-topic">Vim + Jira</div>
+        </div>
+      </div>
+      <div class="path-step">
+        <div class="path-level">Expert</div>
+        <div class="path-topics">
+          <div class="path-topic">Infra from scratch</div>
+          <div class="path-topic">ISO 27001</div>
+          <div class="path-topic">PCI-DSS / GDPR</div>
+          <div class="path-topic">TOGAF / BIAN</div>
+          <div class="path-topic">Banking / Retail</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CALLOUT -->
+<section id="compliance">
+  <div class="inner">
+    <div class="callout">
+      <h2>Built with <span style="color:var(--signal)">Alpaquitay AI</span> + SpecSolid methodology</h2>
+      <p>Every code example, every script, every command was designed following Spec-Driven Development — the methodology that makes AI output predictable, safe, and production-ready.</p>
+      <div class="ctas">
+        <a href="foundations/" class="btn btn-p">Start with Foundations →</a>
+        <a href="https://www.specsolid.com/tools/" class="btn btn-o">Explore SpecSolid Tools</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <a href="https://www.specsolid.com/" class="brand" style="display:inline-block;margin-bottom:12px">SPEC<span>SOLID</span></a>
+        <p style="font-size:12.5px;color:rgba(255,255,255,.35);line-height:1.65;max-width:280px">
+          Arquitectura de software de alto rendimiento y soluciones de IA con propósito corporativo.
+        </p>
+      </div>
+      <div>
+        <h4>DevOps Sections</h4>
+        <a href="foundations/" class="footer-link">01 — Foundations</a>
+        <a href="cloud/" class="footer-link">02 — Cloud & AWS</a>
+        <a href="cicd/" class="footer-link">03 — CI/CD</a>
+        <a href="containers/" class="footer-link">04 — Containers</a>
+        <a href="iac/" class="footer-link">05 — IaC</a>
+        <a href="monitoring/" class="footer-link">06 — Monitoring</a>
+      </div>
+      <div>
+        <h4>Advanced</h4>
+        <a href="advanced/" class="footer-link">07 — Advanced Topics</a>
+        <a href="interview/" class="footer-link">08 — Interview Prep</a>
+        <a href="experience/" class="footer-link">09 — Experience</a>
+        <a href="tools/" class="footer-link">10 — Tools</a>
+        <a href="infra-zero/" class="footer-link">11 — Infra from Zero</a>
+        <a href="compliance/" class="footer-link">12 — Compliance</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 SpecSolid · devops.specsolid.com</div>
+      <div class="footer-copy" style="color:rgba(255,255,255,.25)">All content is educational. No personal or company data included.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const SECTIONS = [
+  { num:'01', slug:'foundations', title:'Foundations', desc:'Linux, Networking, Bash, YAML, Git — the bedrock every senior DevOps engineer must master. Real commands, complete scripts, live lab.', diff:'Beginner', tag:'tag-g', icon:'⚙️', files:6, topics:['Linux','Networking','Bash','YAML','Git'] },
+  { num:'02', slug:'cloud', title:'Cloud & AWS', desc:'IAM, VPC, Lambda, EKS — architect multi-account AWS environments with Terraform. Security, cost control, and scalability from day one.', diff:'Intermediate', tag:'tag-b', icon:'☁️', files:4, topics:['IAM','VPC','Lambda','EKS','S3'] },
+  { num:'03', slug:'cicd', title:'CI/CD Pipelines', desc:'Jenkins, GitHub Actions, GitLab CI — full pipelines with quality gates, SonarQube, Trivy, and zero-downtime Kubernetes deploys.', diff:'Intermediate', tag:'tag-b', icon:'🚀', files:3, topics:['Jenkins','GitHub Actions','GitLab CI','Nexus','SonarQube'] },
+  { num:'04', slug:'containers', title:'Containers & K8s', desc:'Docker multi-stage builds, Kubernetes production setup, EKS with IRSA, HPA, Ingress — from local to production cluster.', diff:'Intermediate', tag:'tag-b', icon:'📦', files:2, topics:['Docker','Kubernetes','EKS','Helm','IRSA'] },
+  { num:'05', slug:'iac', title:'Infrastructure as Code', desc:'Terraform modules, S3 remote state, Ansible roles with Vault — infrastructure that lives in Git and deploys repeatably in minutes.', diff:'Intermediate', tag:'tag-b', icon:'🏗️', files:2, topics:['Terraform','Ansible','Modules','State','Vault'] },
+  { num:'06', slug:'monitoring', title:'Monitoring & Observability', desc:'Prometheus, Grafana, Loki, AlertManager, SLOs — the three pillars of observability wired together with real dashboards and runbooks.', diff:'Advanced', tag:'tag-w', icon:'📊', files:2, topics:['Prometheus','Grafana','Loki','AlertManager','SLOs'] },
+  { num:'07', slug:'advanced', title:'Advanced Topics', desc:'GitOps with ArgoCD, IoT/Drones, AI Agents using Claude SDK, DevSecOps — cutting-edge patterns for irreplaceable senior engineers.', diff:'Advanced', tag:'tag-w', icon:'🔬', files:4, topics:['ArgoCD','Drones/IoT','Claude AI','DevSecOps','Alpaquitay'] },
+  { num:'08', slug:'interview', title:'Interview Prep', desc:'The 45-minute American tech interview — exact structure, real Q&A, English tips for non-native speakers, STAR framework.', diff:'Professional', tag:'tag-v', icon:'🎯', files:2, topics:['45-min structure','Real Q&A','English tips','Scenario answers'] },
+  { num:'09', slug:'experience', title:'Real-World Experience', desc:'Anonymized production case studies — PCI-DSS payment migration, Lambda cold start fix, KMS card tokenization, EKS IRSA.', diff:'Professional', tag:'tag-v', icon:'💼', files:1, topics:['PCI-DSS migration','Lambda optimization','KMS tokenization'] },
+  { num:'10', slug:'tools', title:'Essential Tools', desc:'Vim, Jira, Alpaquitay AI, GitHub Copilot, Ollama — the toolkit that multiplies your productivity as a senior engineer.', diff:'Professional', tag:'tag-v', icon:'🛠️', files:4, topics:['Vim','Jira API','Alpaquitay AI','Ollama','Copilot'] },
+  { num:'11', slug:'infra-zero', title:'Infrastructure from Zero', desc:'Build the complete DevOps platform from scratch — on-premise Vagrant lab, full AWS account, hybrid VPN, production Kubernetes.', diff:'Expert', tag:'tag-r', icon:'🏭', files:6, topics:['Vagrant Lab','AWS Bootstrap','Hybrid VPN','K8s Production','Full Observability'] },
+  { num:'12', slug:'compliance', title:'Compliance & Standards', desc:'ISO 27001/22301/9001, TOGAF, BIAN, PCI-DSS, GDPR, banking sector, retail sector — the full regulatory picture for enterprise DevSecOps.', diff:'Expert', tag:'tag-r', icon:'🛡️', files:10, topics:['ISO 27001','PCI-DSS','GDPR','BIAN','TOGAF','Banking','Retail'] },
+];
+
+document.getElementById('cardsGrid').innerHTML = SECTIONS.map(s => `
+  <a href="${s.slug}/" class="card">
+    <div class="card-head">
+      <span class="card-num">Section ${s.num}</span>
+      <span class="card-icon">${s.icon}</span>
+    </div>
+    <h3>${s.title}</h3>
+    <p>${s.desc}</p>
+    <div class="card-footer">
+      <span class="tag ${s.tag}">${s.diff}</span>
+      <span class="card-files">${s.files} guides →</span>
+    </div>
+  </a>`).join('');
+
+/* Roulette */
+const WORDS = ['from Zero to Senior', 'on AWS & Kubernetes', 'with CI/CD & GitOps', 'for Banking & Fintech', 'with AI Assistance', 'for Production Scale'];
+let idx = 0;
+const el = document.getElementById('roulette');
+function cycle() {
+  el.style.transition = 'opacity .3s,transform .3s';
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(-20px)';
+  setTimeout(() => {
+    idx = (idx + 1) % WORDS.length;
+    el.textContent = WORDS[idx];
+    el.style.transition = 'none';
+    el.style.transform = 'translateY(20px)';
+    el.getBoundingClientRect();
+    el.style.transition = 'opacity .4s,transform .4s';
+    el.style.opacity = '1';
+    el.style.transform = 'translateY(0)';
+  }, 320);
+}
+setInterval(cycle, 3000);
+</script>
+</body>
+</html>
