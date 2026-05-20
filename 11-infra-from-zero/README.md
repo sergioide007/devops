@@ -11,9 +11,9 @@
 By the end of this section, you have a production-ready DevOps platform:
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                 COMPLETE DEVOPS PLATFORM                     │
-├──────────────┬──────────────────┬──────────────────────────┤
+┌──────────────────────────────────────────────────────────────────┐
+│                 COMPLETE DEVOPS PLATFORM                   │
+├───────────────┬──────────────────┬───────────────────────────────┤
 │  ON-PREMISE  │      CLOUD       │        HYBRID            │
 │              │                  │                          │
 │  Linux VMs   │  AWS Account     │  VPN / Direct Connect    │
@@ -23,7 +23,7 @@ By the end of this section, you have a production-ready DevOps platform:
 │  Nexus       │  S3 artifacts    │  Unified monitoring      │
 │  Prometheus  │  CloudWatch      │  ArgoCD GitOps           │
 │  Grafana     │  Grafana Cloud   │  Single Grafana view     │
-└──────────────┴──────────────────┴──────────────────────────┘
+└───────────────┴──────────────────┴───────────────────────────────┘
 ```
 
 ---
