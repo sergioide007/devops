@@ -9,7 +9,7 @@
 
 | File | Topic | Level |
 |------|-------|-------|
-| [01-what-is-devops.md](#what-is-devops) | DevOps concepts and culture | Beginner |
+| [01-what-is-devops.md](https://devops.specsolid.com/foundations/#what-is-devops) | DevOps concepts and culture | Beginner |
 | [02-linux-fundamentals.md](./02-linux-fundamentals.md) | Linux commands and server management | Beginner |
 | [03-networking-basics.md](./03-networking-basics.md) | TCP/IP, DNS, HTTP, VPN | Beginner |
 | [04-bash-scripting.md](./04-bash-scripting.md) | Bash scripts for automation | Beginner–Intermediate |
