@@ -127,6 +127,10 @@
       <div class="md-body">${html}</div>
       ${navHTML}`;
 
+    document
+      .querySelectorAll('.md-body a[href$=".md"]')
+      .forEach(a => a.target = "_self");
+
     // Post-process: add copy buttons to code blocks
     addCopyButtons();
 
