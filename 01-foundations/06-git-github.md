@@ -360,4 +360,4 @@ chmod +x .git/hooks/pre-commit
 
 ---
 
-[← Previous: YAML/JSON](./05-yaml-json.md) | [Next: Cloud Section →](../02-cloud/README.md)
+[← Previous: YAML/JSON](./05-yaml-json.md) | [Next: Cloud Section →](../cloud/)

@@ -998,4 +998,4 @@ PromQL for SLO burn rate:
 
 ---
 
-[← Complete CI/CD Platform](./05-complete-cicd-platform.md) | [← Section 11 Overview](./README.md) | [← Main Menu](../README.md)
+[← Complete CI/CD Platform](./05-complete-cicd-platform.md) | [← Section 11 Overview](./README.md) | [← Main Menu](../)

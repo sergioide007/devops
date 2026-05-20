@@ -420,4 +420,4 @@ aws cloudtrail lookup-events \
 
 ---
 
-[← Back to Section](./README.md) | [Next: EC2 →](./03-ec2-compute.md)
+[← Back to Section](./README.md) | [Next: VPC & Networking →](./05-vpc-networking.md)

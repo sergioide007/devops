@@ -127,9 +127,20 @@
       <div class="md-body">${html}</div>
       ${navHTML}`;
 
-    document
-      .querySelectorAll('.md-body a[href$=".md"]')
-      .forEach(a => a.target = "_self");
+    // Wire same-section .md links into the viewer (prevents 404 on GitHub Pages).
+    // javascript:dvGo() links are intentionally excluded — they don't end in ".md"
+    // and are already handled by window.dvGo. Both mechanisms are independent.
+    document.querySelectorAll('.md-body a[href$=".md"]').forEach(a => {
+      const href = a.getAttribute('href') || '';
+      // Cross-section links (../something/) have been fixed to use section URLs
+      // at the source, but guard here anyway so they reach the browser naturally.
+      if (href.startsWith('../')) return;
+      const filename = href.split('/').pop();
+      const fileIdx = cfg.files.findIndex(f => f.file === filename);
+      if (fileIdx === -1) return; // unknown file — let browser handle it
+      a.href = '#' + cfg.files[fileIdx].slug;
+      a.addEventListener('click', e => { e.preventDefault(); dvLoad(fileIdx); });
+    });
 
     // Post-process: add copy buttons to code blocks
     addCopyButtons();

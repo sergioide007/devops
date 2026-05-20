@@ -400,4 +400,4 @@ aws dynamodb create-table \
 
 ---
 
-[← Back to Section](./README.md) | [Next: Terraform AWS →](./02-terraform-aws.md)
+[← Back to Section](./README.md) | [Next: Ansible Basics →](./03-ansible-basics.md)

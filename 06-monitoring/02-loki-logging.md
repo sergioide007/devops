@@ -301,4 +301,4 @@ aws logs start-query \
 
 ---
 
-[← Back to Section](./README.md) | [Next: Alerting →](./03-alerting.md)
+[← Back to Section](./README.md)
