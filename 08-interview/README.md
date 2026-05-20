@@ -38,4 +38,4 @@
 
 ---
 
-[← Back to Main](../README.md) | [Next: Experience →](../09-experience/README.md)
+[← Back to Main](/) | [Next: Experience →](/experience/)

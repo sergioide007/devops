@@ -30,4 +30,4 @@ These topics show you are senior-level, not just someone who knows the tools.
 
 ---
 
-[← Back to Main](../README.md) | [Next: Interview →](../08-interview/README.md)
+[← Back to Main](/) | [Next: Interview →](/interview/)

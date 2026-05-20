@@ -43,4 +43,4 @@ Know your tools. Know why you use them. Be ready to write a Bash script live.
 
 ---
 
-[← Back to Main](../README.md) | [Next: Cloud →](../02-cloud/README.md)
+[← Back to Main](/) | [Next: Cloud →](/cloud/)

@@ -45,4 +45,4 @@ Without IaC:                    With IaC:
 
 ---
 
-[← Back to Main](../README.md) | [Next: Monitoring →](../06-monitoring/README.md)
+[← Back to Main](/) | [Next: Monitoring →](/monitoring/)

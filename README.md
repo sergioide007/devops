@@ -10,16 +10,18 @@
 Each section has a path. Go step by step, or jump to what you need.
 
 ```
-/devops/01-foundations   → Start here if you are new
-/devops/02-cloud         → AWS, Azure, GCP
-/devops/03-cicd          → Jenkins, GitHub Actions, GitLab
-/devops/04-containers    → Docker and Kubernetes
-/devops/05-iac           → Terraform and Ansible
-/devops/06-monitoring    → Prometheus, Grafana, Loki
-/devops/07-advanced      → GitOps, Microservices, IoT, AI Agents
-/devops/08-interview     → Interview prep and practice
-/devops/09-experience    → Real-world scenarios (anonymized)
-/devops/10-tools         → Essential tools including alpaquitay-ai
+/devops/01-foundations              → Start here if you are new
+/devops/02-cloud                    → AWS, Azure, GCP
+/devops/03-cicd                     → Jenkins, GitHub Actions, GitLab
+/devops/04-containers               → Docker and Kubernetes
+/devops/05-iac                      → Terraform and Ansible
+/devops/06-monitoring               → Prometheus, Grafana, Loki
+/devops/07-advanced                 → GitOps, Microservices, IoT, AI Agents
+/devops/08-interview                → Interview prep and practice
+/devops/09-experience               → Real-world scenarios (anonymized)
+/devops/10-tools                    → Essential tools including alpaquitay-ai
+/devops/11-infra-from-zero          → Monitoring and Observability
+/devops/12-compliance-frameworks    → Advanced topics + Interview prep
 ```
 
 ---
@@ -28,16 +30,18 @@ Each section has a path. Go step by step, or jump to what you need.
 
 | # | Section | Level | Topics |
 |---|---------|-------|--------|
-| 01 | [Foundations](./01-foundations/README.md) | Beginner | Linux, Networking, Bash, YAML, Git |
-| 02 | [Cloud](./02-cloud/README.md) | Beginner–Intermediate | AWS (IAM, EC2, S3, EKS, Lambda, VPC) |
-| 03 | [CI/CD](./03-cicd/README.md) | Intermediate | Jenkins, GitHub Actions, GitLab, SonarQube |
-| 04 | [Containers](./04-containers/README.md) | Intermediate | Docker, Kubernetes, Helm |
-| 05 | [Infrastructure as Code](./05-iac/README.md) | Intermediate–Advanced | Terraform, Ansible |
-| 06 | [Monitoring](./06-monitoring/README.md) | Intermediate–Advanced | Prometheus, Grafana, Loki, Alerting |
-| 07 | [Advanced](./07-advanced/README.md) | Advanced | GitOps, Microservices, IoT, Drones, AI Agents |
-| 08 | [Interview Prep](./08-interview/README.md) | All levels | Q&A, Scenarios, Live coding |
-| 09 | [Experience](./09-experience/README.md) | Advanced | Real-world case studies |
-| 10 | [Tools](./10-tools/README.md) | All levels | Vim, Jira, alpaquitay-ai DevOps agents |
+| 01 | [Foundations](/foundations/) | Beginner | Linux, Networking, Bash, YAML, Git |
+| 02 | [Cloud](/cloud/) | Beginner–Intermediate | AWS (IAM, EC2, S3, EKS, Lambda, VPC) |
+| 03 | [CI/CD](/cicd/) | Intermediate | Jenkins, GitHub Actions, GitLab, SonarQube |
+| 04 | [Containers](/containers/) | Intermediate | Docker, Kubernetes, Helm |
+| 05 | [Infrastructure as Code](/iac/) | Intermediate–Advanced | Terraform, Ansible |
+| 06 | [Monitoring](/monitoring/) | Intermediate–Advanced | Prometheus, Grafana, Loki, Alerting |
+| 07 | [Advanced](/advanced/) | Advanced | GitOps, Microservices, IoT, Drones, AI Agents |
+| 08 | [Interview Prep](/interview/) | All levels | Q&A, Scenarios, Live coding |
+| 09 | [Experience](/experience/) | Advanced | Real-world case studies |
+| 10 | [Tools](/tools/) | All levels | Vim, Jira, alpaquitay-ai DevOps agents |
+| 11 | [Infra from zero](/infra-zero/) | All levels | Monitoring and Observability |
+| 12 | [Compliance frameworks](./compliance/) | All levels | Advanced topics + Interview prep |
 
 ---
 

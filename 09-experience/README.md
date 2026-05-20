@@ -35,4 +35,4 @@ Each case study has:
 
 ---
 
-[← Back to Main](../README.md)
+[← Back to Main](/) | [Next: Tools →](/tools/)

@@ -86,4 +86,4 @@ wsl --install -d Ubuntu
 
 ---
 
-[← Back to Main](../README.md) | [Next: Compliance →](../12-compliance-frameworks/README.md)
+[← Back to Main](/) | [Next: Compliance →](/compliance/)

@@ -52,4 +52,4 @@ Deployment manages rolling updates and rollbacks
 
 ---
 
-[← Back to Main](../README.md) | [Next: IaC →](../05-iac/README.md)
+[← Back to Main](/) | [Next: IaC →](/iac/)

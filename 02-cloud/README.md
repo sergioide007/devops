@@ -76,4 +76,4 @@ aws sts get-caller-identity
 
 ---
 
-[← Back to Main](../README.md) | [Next: CI/CD →](../03-cicd/README.md)
+[← Back to Main](/) | [Next: CI/CD →](/cicd/)

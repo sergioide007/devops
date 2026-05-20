@@ -63,4 +63,4 @@ Use CloudWatch for AWS metrics + Prometheus/Grafana for application metrics.
 
 ---
 
-[← Back to Main](../README.md) | [Next: Advanced →](../07-advanced/README.md)
+[← Back to Main](/) | [Next: Advanced →](/advanced/)

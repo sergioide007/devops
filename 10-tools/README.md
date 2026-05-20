@@ -63,4 +63,4 @@ sudo ln -s /opt/kubectx/kubens /usr/local/bin/kubens
 
 ---
 
-[← Back to Main](../README.md)
+[← Back to Main](/) | [Next: Infra from zero →](/infra-zero/)
