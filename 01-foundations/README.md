@@ -9,12 +9,12 @@
 
 | File | Topic | Level |
 |------|-------|-------|
-| [01-what-is-devops.md](https://devops.specsolid.com/foundations/#what-is-devops) | DevOps concepts and culture | Beginner |
-| [02-linux-fundamentals.md](./02-linux-fundamentals.md) | Linux commands and server management | Beginner |
-| [03-networking-basics.md](./03-networking-basics.md) | TCP/IP, DNS, HTTP, VPN | Beginner |
-| [04-bash-scripting.md](./04-bash-scripting.md) | Bash scripts for automation | Beginner–Intermediate |
-| [05-yaml-json.md](./05-yaml-json.md) | YAML and JSON for DevOps configs | Beginner |
-| [06-git-github.md](./06-git-github.md) | Git version control and GitHub | Beginner–Intermediate |
+| [What is DevOps](javascript:dvGo('what-is-devops')) | DevOps concepts and culture | Beginner |
+| [Linux fundamentals](javascript:dvGo('linux-fundamentals')) | Linux commands and server management | Beginner |
+| [Networking basics](javascript:dvGo('networking-basics')) | TCP/IP, DNS, HTTP, VPN | Beginner |
+| [Bash scripting](javascript:dvGo('bash-scripting.md')) | Bash scripts for automation | Beginner–Intermediate |
+| [Yaml / Json](javascript:dvGo('yaml-json')) | YAML and JSON for DevOps configs | Beginner |
+| [Git / Github](javascript:dvGo('git-github')) | Git version control and GitHub | Beginner–Intermediate |
 
 ---
 

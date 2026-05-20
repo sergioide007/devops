@@ -171,6 +171,11 @@
     });
   };
 
+  window.dvGo = function(slug) {
+    const idx = cfg.files.findIndex(f => f.slug === slug);
+    if (idx !== -1) dvLoad(idx);
+  };
+
   // ── ERROR STATE ─────────────────────────────────────────────────
   function renderError(err, file, url) {
     contentArea.innerHTML = `
