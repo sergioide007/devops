@@ -28,16 +28,16 @@ With compliance knowledge:
 
 | File | Standard/Framework | Sector |
 |------|-------------------|--------|
-| [01-iso27001.md](./01-iso27001.md) | ISO 27001 — Information Security | All sectors |
-| [02-iso22301.md](./02-iso22301.md) | ISO 22301 — Business Continuity | All sectors |
-| [03-iso9001.md](./03-iso9001.md) | ISO 9001 — Quality Management | All sectors |
-| [04-togaf.md](./04-togaf.md) | TOGAF — Enterprise Architecture | All sectors |
-| [05-bian.md](./05-bian.md) | BIAN — Banking Industry Architecture | Banking |
-| [06-pci-dss.md](./06-pci-dss.md) | PCI-DSS — Payment Card Security | Fintech, Retail |
-| [07-gdpr-ccpa.md](./07-gdpr-ccpa.md) | GDPR / CCPA — Data Privacy | All sectors |
-| [08-sector-banking.md](./08-sector-banking.md) | Banking: BCBS 239, Basel III | Banking |
-| [09-sector-retail.md](./09-sector-retail.md) | Retail: SOC 2, PCI, CCPA | Retail, E-commerce |
-| [10-compliance-pipeline.md](./10-compliance-pipeline.md) | Automated compliance in CI/CD | All sectors |
+| [ISO 27001](javascript:dvGo('iso27001')) | ISO 27001 — Information Security | All sectors |
+| [ISO 22301](javascript:dvGo('iso22301')) | ISO 22301 — Business Continuity | All sectors |
+| [ISO 9001](javascript:dvGo('iso9001')) | ISO 9001 — Quality Management | All sectors |
+| [TOGAF](javascript:dvGo('togaf')) | TOGAF — Enterprise Architecture | All sectors |
+| [BIAN](javascript:dvGo('bian')) | BIAN — Banking Industry Architecture | Banking |
+| [PCI DSS](javascript:dvGo('pci-dss')) | PCI-DSS — Payment Card Security | Fintech, Retail |
+| [GDRP / CCPA](javascript:dvGo('gdpr-ccpa')) | GDPR / CCPA — Data Privacy | All sectors |
+| [Sector Banking](javascript:dvGo('sector-banking')) | Banking: BCBS 239, Basel III | Banking |
+| [Sector Retail](javascript:dvGo('sector-retail')) | Retail: SOC 2, PCI, CCPA | Retail, E-commerce |
+| [Compliance Pipeline](javascript:dvGo('compliance-pipeline')) | Automated compliance in CI/CD | All sectors |
 
 ---
 

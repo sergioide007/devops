@@ -64,7 +64,7 @@
     // Show loading
     contentArea.innerHTML = `
       <div class="breadcrumb">
-        <a href="../../specsolid/">SpecSolid</a>
+        <a href="https://www.specsolid.com/">SpecSolid</a>
         <span class="sep">/</span>
         <a href="../">DevOps</a>
         <span class="sep">/</span>
@@ -116,7 +116,7 @@
 
     contentArea.innerHTML = `
       <div class="breadcrumb">
-        <a href="../../specsolid/">SpecSolid</a>
+        <a href="https://www.specsolid.com/">SpecSolid</a>
         <span class="sep">/</span>
         <a href="../">DevOps</a>
         <span class="sep">/</span>
@@ -180,7 +180,7 @@
   function renderError(err, file, url) {
     contentArea.innerHTML = `
       <div class="breadcrumb">
-        <a href="../../specsolid/">SpecSolid</a>
+        <a href="https://www.specsolid.com/">SpecSolid</a>
         <span class="sep">/</span>
         <a href="../">DevOps</a>
         <span class="sep">/</span>

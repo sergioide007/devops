@@ -10,16 +10,16 @@
 
 | File | Topic | Level |
 |------|-------|-------|
-| [01-aws-overview.md](./01-aws-overview.md) | AWS fundamentals and global infrastructure | Beginner |
-| [02-iam-security.md](./02-iam-security.md) | IAM — Identity and Access Management | Beginner–Intermediate |
-| [03-ec2-compute.md](./03-ec2-compute.md) | EC2 — Virtual Machines in AWS | Intermediate |
-| [04-s3-storage.md](./04-s3-storage.md) | S3 — Object Storage | Beginner |
-| [05-vpc-networking.md](./05-vpc-networking.md) | VPC — Virtual Private Cloud | Intermediate |
-| [06-lambda-serverless.md](./06-lambda-serverless.md) | Lambda — Serverless Computing | Intermediate |
-| [07-eks-kubernetes.md](./07-eks-kubernetes.md) | EKS — Kubernetes on AWS | Advanced |
-| [08-cloudwatch-monitoring.md](./08-cloudwatch-monitoring.md) | CloudWatch — Metrics and Alerts | Intermediate |
-| [09-route53-dns.md](./09-route53-dns.md) | Route 53 — DNS and Traffic Routing | Intermediate |
-| [10-hybrid-onpremise.md](./10-hybrid-onpremise.md) | Hybrid and On-Premise Strategies | Advanced |
+| [AWS overview](javascript:dvGo('aws-overview')) | AWS fundamentals and global infrastructure | Beginner |
+| [IAM security](javascript:dvGo('iam-security')) | IAM — Identity and Access Management | Beginner–Intermediate |
+| [EC2 compute](javascript:dvGo('ec2-compute')) | EC2 — Virtual Machines in AWS | Intermediate |
+| [S3 storage](javascript:dvGo('s3-storage')) | S3 — Object Storage | Beginner |
+| [VPC networking](javascript:dvGo('vpc-networking')) | VPC — Virtual Private Cloud | Intermediate |
+| [Lambda serverless](javascript:dvGo('lambda-serverless')) | Lambda — Serverless Computing | Intermediate |
+| [EKS kubernetes](javascript:dvGo('eks-kubernetes')) | EKS — Kubernetes on AWS | Advanced |
+| [Cloudwatch monitoring](javascript:dvGo('cloudwatch-monitoring')) | CloudWatch — Metrics and Alerts | Intermediate |
+| [Route53 DNS](javascript:dvGo('route53-dns')) | Route 53 — DNS and Traffic Routing | Intermediate |
+| [Hybrid onpremise](javascript:dvGo('hybrid-onpremise')) | Hybrid and On-Premise Strategies | Advanced |
 
 ---
 

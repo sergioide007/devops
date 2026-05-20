@@ -9,10 +9,10 @@
 
 | File | Topic |
 |------|-------|
-| [01-interview-structure.md](./01-interview-structure.md) | How the interview is structured |
-| [02-technical-questions.md](./02-technical-questions.md) | 60+ technical Q&A with answers |
-| [03-behavioral-questions.md](./03-behavioral-questions.md) | STAR method for behavioral questions |
-| [04-live-coding-scenarios.md](./04-live-coding-scenarios.md) | Live scenarios and solutions |
+| [Interview structure](javascript:dvGo('interview-structure')) | How the interview is structured |
+| [Technical questions](javascript:dvGo('technical-questions')) | 60+ technical Q&A with answers |
+| [Behavioral questions](javascript:dvGo('behavioral-questions')) | STAR method for behavioral questions |
+| [Live coding scenarios](javascript:dvGo('live-coding-scenarios')) | Live scenarios and solutions |
 
 ---
 

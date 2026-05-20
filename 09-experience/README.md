@@ -10,11 +10,11 @@
 
 | File | Topic | Environment |
 |------|-------|-------------|
-| [01-pci-payment-migration.md](./01-pci-payment-migration.md) | PCI-DSS payment system on AWS EKS | AWS, Kubernetes |
-| [02-zero-downtime-migration.md](./02-zero-downtime-migration.md) | Zero-downtime NoSQL → SQL migration | Azure, Kubernetes |
-| [03-serverless-banking.md](./03-serverless-banking.md) | Legacy banking → serverless Lambda | AWS Lambda |
-| [04-security-module.md](./04-security-module.md) | Security module for fintech platform | Kubernetes, API Gateway |
-| [05-multi-country-portal.md](./05-multi-country-portal.md) | Multi-country deployment | AWS S3, CDN |
+| [PCI payment migration](javascript:dvGo('pci-payment-migration')) | PCI-DSS payment system on AWS EKS | AWS, Kubernetes |
+| [Zero downtime migration](javascript:dvGo('zero-downtime-migration')) | Zero-downtime NoSQL → SQL migration | Azure, Kubernetes |
+| [Serverless banking](javascript:dvGo('serverless-banking')) | Legacy banking → serverless Lambda | AWS Lambda |
+| [Security module](javascript:dvGo('security-module')) | Security module for fintech platform | Kubernetes, API Gateway |
+| [Multi country portal](javascript:dvGo('multi-country-portal')) | Multi-country deployment | AWS S3, CDN |
 
 ---
 

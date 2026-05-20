@@ -32,12 +32,12 @@ By the end of this section, you have a production-ready DevOps platform:
 
 | File | Topic | Time |
 |------|-------|------|
-| [01-onpremise-from-zero.md](./01-onpremise-from-zero.md) | Build on-premise DevOps platform | 2–3 hours |
-| [02-cloud-from-zero.md](./02-cloud-from-zero.md) | Build AWS cloud platform from scratch | 2–3 hours |
-| [03-hybrid-setup.md](./03-hybrid-setup.md) | Connect on-premise to cloud | 1–2 hours |
-| [04-kubernetes-production.md](./04-kubernetes-production.md) | Production-grade Kubernetes | 2 hours |
-| [05-complete-cicd-platform.md](./05-complete-cicd-platform.md) | Jenkins + Nexus + SonarQube + Slack | 2 hours |
-| [06-full-observability.md](./06-full-observability.md) | Prometheus + Grafana + Loki + Alerting | 2 hours |
+| [Onpremise from zero](javascript:dvGo('onpremise-from-zero')) | Build on-premise DevOps platform | 2–3 hours |
+| [Cloud from zero](javascript:dvGo('cloud-from-zero')) | Build AWS cloud platform from scratch | 2–3 hours |
+| [Hybrid setup](javascript:dvGo('hybrid-setup')) | Connect on-premise to cloud | 1–2 hours |
+| [Kubernetes production](javascript:dvGo('kubernetes-production')) | Production-grade Kubernetes | 2 hours |
+| [Complete CI/CD platform](javascript:dvGo('complete-cicd-platform')) | Jenkins + Nexus + SonarQube + Slack | 2 hours |
+| [Full Observability](javascript:dvGo('full-observability')) | Prometheus + Grafana + Loki + Alerting | 2 hours |
 
 ---
 

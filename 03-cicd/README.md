@@ -10,11 +10,11 @@
 
 | File | Topic | Level |
 |------|-------|-------|
-| [01-jenkins.md](./01-jenkins.md) | Jenkins — The classic CI/CD tool | Intermediate |
-| [02-github-actions.md](./02-github-actions.md) | GitHub Actions — CI/CD in GitHub | Intermediate |
-| [03-gitlab-cicd.md](./03-gitlab-cicd.md) | GitLab CI/CD | Intermediate |
-| [04-nexus-sonarqube.md](./04-nexus-sonarqube.md) | Nexus (artifacts) + SonarQube (code quality) | Intermediate |
-| [05-complete-pipeline.md](./05-complete-pipeline.md) | End-to-end pipeline with all tools | Advanced |
+| [Jenkins](javascript:dvGo('jenkins')) | Jenkins — The classic CI/CD tool | Intermediate |
+| [Github Actions.md](javascript:dvGo('github-actions')) | GitHub Actions — CI/CD in GitHub | Intermediate |
+| [Gitlab CI/CD](javascript:dvGo('gitlab-cicd')) | GitLab CI/CD | Intermediate |
+| [Nexus Sonarqube](javascript:dvGo('nexus-sonarqube')) | Nexus (artifacts) + SonarQube (code quality) | Intermediate |
+| [Complete pipeline.md](javascript:dvGo('complete-pipeline')) | End-to-end pipeline with all tools | Advanced |
 
 ---
 

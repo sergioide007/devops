@@ -9,11 +9,11 @@
 
 | File | Topic | Level |
 |------|-------|-------|
-| [01-gitops.md](./01-gitops.md) | GitOps — Git as source of truth | Advanced |
-| [02-microservices-devops.md](./02-microservices-devops.md) | DevOps for microservices | Advanced |
-| [03-iot-drones.md](./03-iot-drones.md) | IoT and Drone systems DevOps | Advanced |
-| [04-agent-orchestration.md](./04-agent-orchestration.md) | AI Agent orchestration for DevOps | Advanced |
-| [05-devsecops.md](./05-devsecops.md) | DevSecOps — Security in every step | Advanced |
+| [GitOps](javascript:dvGo('gitops')) | GitOps — Git as source of truth | Advanced |
+| [Microservices DevOps](javascript:dvGo('microservices-devops')) | DevOps for microservices | Advanced |
+| [IOT Drones](javascript:dvGo('iot-drones')) | IoT and Drone systems DevOps | Advanced |
+| [Agent Orchestration](javascript:dvGo('agent-orchestration')) | AI Agent orchestration for DevOps | Advanced |
+| [DevSecOps](javascript:dvGo('devsecops')) | DevSecOps — Security in every step | Advanced |
 
 ---
 

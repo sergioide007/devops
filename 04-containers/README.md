@@ -10,11 +10,11 @@
 
 | File | Topic | Level |
 |------|-------|-------|
-| [01-docker-basics.md](./01-docker-basics.md) | Docker fundamentals | Beginner |
-| [02-docker-advanced.md](./02-docker-advanced.md) | Multi-stage builds, Compose, security | Intermediate |
-| [03-kubernetes-basics.md](./03-kubernetes-basics.md) | Kubernetes concepts and kubectl | Intermediate |
-| [04-kubernetes-production.md](./04-kubernetes-production.md) | Production: HPA, PDB, resource limits | Advanced |
-| [05-helm.md](./05-helm.md) | Helm — Package manager for Kubernetes | Intermediate |
+| [Docker basics](javascript:dvGo('docker-basics')) | Docker fundamentals | Beginner |
+| [Docker advanced](javascript:dvGo('docker-advanced')) | Multi-stage builds, Compose, security | Intermediate |
+| [Kubernetes basics](javascript:dvGo('kubernetes-basics')) | Kubernetes concepts and kubectl | Intermediate |
+| [Kubernetes production](javascript:dvGo('kubernetes-production')) | Production: HPA, PDB, resource limits | Advanced |
+| [Helm.md](javascript:dvGo('helm')) | Helm — Package manager for Kubernetes | Intermediate |
 
 ---
 

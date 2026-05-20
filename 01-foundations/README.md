@@ -12,7 +12,7 @@
 | [What is DevOps](javascript:dvGo('what-is-devops')) | DevOps concepts and culture | Beginner |
 | [Linux fundamentals](javascript:dvGo('linux-fundamentals')) | Linux commands and server management | Beginner |
 | [Networking basics](javascript:dvGo('networking-basics')) | TCP/IP, DNS, HTTP, VPN | Beginner |
-| [Bash scripting](javascript:dvGo('bash-scripting.md')) | Bash scripts for automation | Beginner–Intermediate |
+| [Bash scripting](javascript:dvGo('bash-scripting')) | Bash scripts for automation | Beginner–Intermediate |
 | [Yaml / Json](javascript:dvGo('yaml-json')) | YAML and JSON for DevOps configs | Beginner |
 | [Git / Github](javascript:dvGo('git-github')) | Git version control and GitHub | Beginner–Intermediate |
 

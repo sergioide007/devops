@@ -10,10 +10,10 @@
 
 | File | Topic | Level |
 |------|-------|-------|
-| [01-terraform-basics.md](./01-terraform-basics.md) | Terraform fundamentals | Intermediate |
-| [02-terraform-aws.md](./02-terraform-aws.md) | Terraform for AWS (VPC, EKS, RDS) | Advanced |
-| [03-ansible-basics.md](./03-ansible-basics.md) | Ansible for configuration management | Intermediate |
-| [04-ansible-playbooks.md](./04-ansible-playbooks.md) | Real-world Ansible playbooks | Advanced |
+| [Terraform basics.md](javascript:dvGo('terraform-basics')) | Terraform fundamentals | Intermediate |
+| [Terraform AWS](javascript:dvGo('terraform-aws')) | Terraform for AWS (VPC, EKS, RDS) | Advanced |
+| [Ansible basics](javascript:dvGo('ansible-basics')) | Ansible for configuration management | Intermediate |
+| [Ansible playbooks.md](javascript:dvGo('ansible-playbooks')) | Real-world Ansible playbooks | Advanced |
 
 ---
 

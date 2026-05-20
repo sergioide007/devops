@@ -10,10 +10,10 @@
 
 | File | Topic | Level |
 |------|-------|-------|
-| [01-prometheus-grafana.md](./01-prometheus-grafana.md) | Prometheus + Grafana — Metrics | Intermediate |
-| [02-loki-logging.md](./02-loki-logging.md) | Loki + Alloy — Centralized Logging | Intermediate |
-| [03-alerting.md](./03-alerting.md) | AlertManager — Alerts and Notifications | Advanced |
-| [04-observability-stack.md](./04-observability-stack.md) | Full observability stack | Advanced |
+| [Prometheus / Grafana.md](javascript:dvGo('prometheus-grafana')) | Prometheus + Grafana — Metrics | Intermediate |
+| [Loki logging](javascript:dvGo('loki-logging')) | Loki + Alloy — Centralized Logging | Intermediate |
+| [Alerting](javascript:dvGo('alerting')) | AlertManager — Alerts and Notifications | Advanced |
+| [Observability stack](javascript:dvGo('observability-stack')) | Full observability stack | Advanced |
 
 ---
 

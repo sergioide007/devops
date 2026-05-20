@@ -9,10 +9,10 @@
 
 | File | Topic |
 |------|-------|
-| [01-vim-nano.md](./01-vim-nano.md) | Vim and nano — terminal editors |
-| [02-jira-agile.md](./02-jira-agile.md) | Jira, Trello — Agile project management |
-| [03-alpaquitay-ai.md](./03-alpaquitay-ai.md) | alpaquitay-ai — AI DevOps agents in VS Code |
-| [04-ai-tools.md](./04-ai-tools.md) | AI tools for DevOps (Copilot, Gemini, Claude) |
+| [VIM / nano](javascript:dvGo('vim-nano')) | Vim and nano — terminal editors |
+| [Jira agile](javascript:dvGo('jira-agile')) | Jira, Trello — Agile project management |
+| [Alpaquitay-ai](javascript:dvGo('alpaquitay-ai')) | alpaquitay-ai — AI DevOps agents in VS Code |
+| [AI Tools](javascript:dvGo('ai-tools')) | AI tools for DevOps (Copilot, Gemini, Claude) |
 
 ---
 
