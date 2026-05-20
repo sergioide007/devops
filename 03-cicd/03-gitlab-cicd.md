@@ -234,4 +234,4 @@ helm install gitlab-runner gitlab/gitlab-runner \
 
 ---
 
-[← Previous: GitHub Actions](./02-github-actions.md) | [Next: Nexus + SonarQube →](./04-nexus-sonarqube.md)
+[← Previous: GitHub Actions](javascript:dvGo('github-actions')) | [← Section Overview](javascript:dvGo('overview'))

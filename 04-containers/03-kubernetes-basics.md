@@ -470,21 +470,205 @@ module "eks" {
 
 ## Interview Questions — Kubernetes
 
-**Q: What is the difference between a Pod and a Deployment?**
+---
+
+### Q: ¿Cuáles son los componentes de Kubernetes? (Kubernetes components)
+
+**Respuesta completa para entrevista:**
+
+> "Kubernetes tiene dos grupos de componentes: el **Control Plane** (cerebro) y los **Worker Nodes** (músculos).
+>
+> **Control Plane — 4 piezas clave:**
+> - **kube-apiserver**: el único punto de entrada. Cada comando `kubectl` va aquí. Es una API REST. Si el apiserver cae, nada funciona.
+> - **etcd**: base de datos distribuida key-value. Guarda TODO el estado del cluster — qué Pods existen, qué quiere el usuario, qué está corriendo. Es el único componente con estado. Si mueres etcd, mueres el cluster.
+> - **kube-scheduler**: cuando creas un Pod, el scheduler decide EN QUÉ nodo corre. Evalúa recursos disponibles, afinidad, taints/tolerations. NO arranca el Pod — solo decide dónde va.
+> - **kube-controller-manager**: bucle de control infinito. Compara estado deseado vs estado actual y actúa. El Deployment controller crea ReplicaSets. El ReplicaSet controller crea Pods. El Node controller detecta nodos caídos.
+>
+> **Worker Nodes — 3 piezas clave:**
+> - **kubelet**: agente que corre en cada nodo. Habla con el apiserver, recibe qué Pods debe correr, y los arranca usando el container runtime. Reporta estado de vuelta.
+> - **kube-proxy**: maneja las reglas de red (iptables/ipvs). Cuando llega tráfico al Service, kube-proxy decide a cuál Pod enviarlo.
+> - **Container Runtime**: ejecuta los contenedores. Hoy en día: containerd (default), CRI-O. Docker fue deprecated en Kubernetes 1.24."
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                        CONTROL PLANE                            │
+│                                                                 │
+│  ┌──────────────┐  ┌──────────┐  ┌───────────┐  ┌──────────┐  │
+│  │  kube-        │  │  etcd    │  │ kube-     │  │ controller│  │
+│  │  apiserver    │  │(database)│  │ scheduler │  │ manager  │  │
+│  └──────────────┘  └──────────┘  └───────────┘  └──────────┘  │
+└─────────────────────────────────────────────────────────────────┘
+              │ kubectl/API calls
+┌─────────────▼────────────────┐  ┌──────────────────────────────┐
+│         WORKER NODE 1        │  │         WORKER NODE 2        │
+│                              │  │                              │
+│  ┌─────────┐  ┌───────────┐  │  │  ┌─────────┐  ┌───────────┐ │
+│  │ kubelet │  │ kube-proxy│  │  │  │ kubelet │  │ kube-proxy│ │
+│  └─────────┘  └───────────┘  │  │  └─────────┘  └───────────┘ │
+│  ┌──────────────────────────┐ │  │  ┌──────────────────────────┐│
+│  │  Pod: [container][sidecar]│ │  │  │  Pod: [container]        ││
+│  └──────────────────────────┘ │  │  └──────────────────────────┘│
+│  Container Runtime (containerd)│  │  Container Runtime (containerd)│
+└──────────────────────────────┘  └──────────────────────────────┘
+```
+
+```bash
+# Verificar componentes del Control Plane (en clusters administrados como EKS están ocultos)
+kubectl get pods -n kube-system
+
+# Ver nodos y su estado
+kubectl get nodes -o wide
+
+# Ver detalles de un nodo: qué Pods corren, recursos disponibles, condiciones
+kubectl describe node worker-node-01
+
+# Ver logs del kubelet en un nodo
+journalctl -u kubelet -f --no-pager
+
+# En EKS/GKE el Control Plane es gestionado — no accedes directamente
+# En clusters self-managed (kubeadm):
+kubectl logs kube-apiserver-master -n kube-system
+kubectl logs kube-scheduler-master -n kube-system
+kubectl logs kube-controller-manager-master -n kube-system
+```
+
+---
+
+### Q: ¿Cuál es el objeto más pequeño en Kubernetes?
+
+> "El objeto más pequeño es el **Pod**. Un Pod es la unidad mínima de despliegue —
+> uno o más contenedores que comparten la misma red (IP) y almacenamiento. En la
+> práctica el 99% de los Pods tienen un solo contenedor principal. El patrón
+> sidecar (dos contenedores en el mismo Pod) se usa para cosas como logging,
+> proxy, o inyección de configuración.
+>
+> La jerarquía es: **Deployment → ReplicaSet → Pod → Container**.
+> El Pod no escala solo, no se auto-cura solo — para eso está el Deployment."
+
+```
+Kubernetes Objects — jerarquía de tamaño:
+
+Namespace       → aislamiento lógico (production, staging, dev)
+  └── Deployment  → controlador de ciclo de vida
+        └── ReplicaSet  → mantiene N réplicas
+              └── Pod        ← OBJETO MÁS PEQUEÑO DEPLOYABLE
+                    └── Container(s)  → el proceso real
+```
+
+```bash
+# Ver todos los niveles de una app
+kubectl get deployment my-api -n production
+kubectl get replicaset -n production           # Kubernetes crea esto automáticamente
+kubectl get pods -n production -l app=my-api   # los Pods reales
+kubectl describe pod my-api-abc123 -n production
+
+# Un Pod puede tener múltiples contenedores — ver cada uno
+kubectl logs my-api-abc123 -c main-container -n production
+kubectl logs my-api-abc123 -c sidecar-container -n production
+
+# Ver los contenedores dentro de un Pod
+kubectl get pod my-api-abc123 -n production -o jsonpath='{.spec.containers[*].name}'
+```
+
+---
+
+### Q: ¿Cómo consultas los logs dentro de un contenedor? ¿Cómo entras al contenedor?
+
+**Esta es una pregunta práctica que SIEMPRE hacen en entrevistas:**
+
+```bash
+# ── VER LOGS ──────────────────────────────────────────────────────
+
+# Logs del Pod (contenedor principal)
+kubectl logs my-api-abc123
+
+# Logs en tiempo real (--follow)
+kubectl logs my-api-abc123 -f
+
+# Logs del contenedor ANTES de que crasheara (crash anterior)
+kubectl logs my-api-abc123 --previous
+
+# Últimas 100 líneas solamente
+kubectl logs my-api-abc123 --tail=100
+
+# Logs desde hace 1 hora
+kubectl logs my-api-abc123 --since=1h
+
+# Si el Pod tiene MÚLTIPLES contenedores, especifica cuál
+kubectl logs my-api-abc123 -c my-api
+kubectl logs my-api-abc123 -c sidecar-envoy
+
+# Logs de TODOS los pods con la misma etiqueta (varios réplicas)
+kubectl logs -l app=my-api -n production --tail=50
+
+# ── ENTRAR AL CONTENEDOR ──────────────────────────────────────────
+
+# Entrar con bash (la mayoría de imágenes Ubuntu/Debian)
+kubectl exec -it my-api-abc123 -- bash
+
+# Entrar con sh (imágenes Alpine — no tienen bash)
+kubectl exec -it my-api-abc123 -- sh
+
+# Ejecutar un comando puntual SIN entrar
+kubectl exec my-api-abc123 -- env              # listar variables de entorno
+kubectl exec my-api-abc123 -- cat /etc/config  # ver un archivo
+kubectl exec my-api-abc123 -- ps aux           # ver procesos corriendo
+kubectl exec my-api-abc123 -- netstat -tlnp    # ver puertos abiertos
+kubectl exec my-api-abc123 -- df -h            # ver disco disponible
+
+# Si el Pod tiene múltiples contenedores, especifica cuál entrar
+kubectl exec -it my-api-abc123 -c main-container -- bash
+
+# ── DENTRO DEL CONTENEDOR — qué hacer ────────────────────────────
+# Una vez dentro, estás en el filesystem del contenedor:
+cat /app/logs/error.log          # ver log de aplicación
+tail -f /var/log/app.log         # seguir log en tiempo real
+env | grep DATABASE              # verificar variables de entorno
+curl localhost:8080/health       # probar endpoint desde dentro
+ping db-service                  # verificar conectividad interna
+nslookup db-service.production   # resolver DNS interno de Kubernetes
+```
+
+**Respuesta de entrevista:**
+
+> "Para ver logs uso `kubectl logs <pod>` y si está crasheando `kubectl logs <pod> --previous`
+> para ver los logs del intento anterior. Para entrar al contenedor uso `kubectl exec -it <pod> -- bash`
+> o `-- sh` si es Alpine. Dentro verifico variables de entorno con `env`, compruebo conectividad
+> con `curl` o `ping`, y reviso logs de aplicación directamente. Si el contenedor crashea tan rápido
+> que no puedo entrar, hago override del entrypoint con `kubectl debug` o modifico temporalmente el
+> Deployment para que corra `sleep 3600` y así tengo tiempo de investigar."
+
+```bash
+# Técnica avanzada: si el contenedor no tiene shell o crashea al instante
+# Usa un contenedor efímero de debug (Kubernetes 1.23+)
+kubectl debug -it my-api-abc123 --image=busybox --target=my-api
+
+# O crear un Pod de debug temporal en el mismo namespace
+kubectl run debug-pod --rm -it \
+    --image=curlimages/curl \
+    --restart=Never \
+    -n production \
+    -- sh
+# Desde aquí puedes alcanzar los Services internos
+```
+
+---
+
+### Q: What is the difference between a Pod and a Deployment?
 > "A Pod is a single running instance of a container (or multiple containers). It is
 > ephemeral — if it crashes, it is gone. A Deployment is a controller that manages
 > a set of Pods — it ensures the desired number of replicas is always running. If a
 > Pod crashes, the Deployment automatically creates a new one. I always use Deployments
 > (never bare Pods) in production."
 
-**Q: How does rolling update work in Kubernetes?**
+### Q: How does rolling update work in Kubernetes?
 > "When you update a Deployment, Kubernetes uses the rolling update strategy. It creates
 > new Pods with the new version while keeping old Pods running. With maxSurge=1 and
 > maxUnavailable=0, it adds one new Pod, waits for it to be ready, then removes one old
 > Pod. This continues until all Pods are updated. Traffic is never interrupted. If the
 > rollout fails, I use `kubectl rollout undo` to go back instantly."
 
-**Q: How do you handle configuration and secrets in Kubernetes?**
+### Q: How do you handle configuration and secrets in Kubernetes?
 > "Configuration goes in ConfigMaps — non-sensitive values like feature flags, URLs,
 > timeouts. Secrets hold sensitive data like passwords and API keys — they are base64
 > encoded but not encrypted by default. In production, I use the External Secrets Operator
@@ -493,4 +677,4 @@ module "eks" {
 
 ---
 
-[← Back to Section](./README.md) | [Next: Kubernetes Production →](./04-kubernetes-production.md)
+[← Section Overview](javascript:dvGo('overview')) | [← Docker Basics](javascript:dvGo('docker-basics'))

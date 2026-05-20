@@ -8,13 +8,26 @@
 
 ## Topics in This Section
 
-| File | Topic | Level |
-|------|-------|-------|
-| [Jenkins](javascript:dvGo('jenkins')) | Jenkins — The classic CI/CD tool | Intermediate |
-| [Github Actions.md](javascript:dvGo('github-actions')) | GitHub Actions — CI/CD in GitHub | Intermediate |
-| [Gitlab CI/CD](javascript:dvGo('gitlab-cicd')) | GitLab CI/CD | Intermediate |
-| [Nexus Sonarqube](javascript:dvGo('nexus-sonarqube')) | Nexus (artifacts) + SonarQube (code quality) | Intermediate |
-| [Complete pipeline.md](javascript:dvGo('complete-pipeline')) | End-to-end pipeline with all tools | Advanced |
+| Guide | Content | Level |
+|-------|---------|-------|
+| [Jenkins](javascript:dvGo('jenkins')) | Pipelines, locks, releases, logs, debugging, Kafka, cloud integrations | Intermediate |
+| [GitHub Actions](javascript:dvGo('github-actions')) | Workflows, OIDC auth, matrix builds, reusable workflows | Intermediate |
+| [GitLab CI/CD](javascript:dvGo('gitlab-cicd')) | `.gitlab-ci.yml`, runners, environments, ArgoCD integration | Intermediate |
+
+---
+
+## What You Learn in Jenkins
+
+The Jenkins guide covers every real interview question about CI/CD operations:
+
+- **Pipeline as Code** — full Jenkinsfile with Docker, SonarQube, Trivy, Kubernetes deploy
+- **Lock errors** — what Lockable Resources are, how to identify a blocked pipeline, how to enter the Jenkins container (`docker exec` / `kubectl exec`) and release locks via Script Console
+- **Deadlock (blocking loops)** — how two pipelines block each other, how to detect it, how to break it, how to prevent it
+- **Reading Jenkins logs** — paths in `$JENKINS_HOME`, exit codes, grep across builds, Loki integration
+- **Creating releases** — semantic versioning from commit messages, Git tags, GitHub Releases via API
+- **New Jenkins from scratch** — Helm install, Kubernetes pod agents, JCasC (Configuration as Code)
+- **CI/CD tool comparison** — Jenkins vs GitHub Actions vs GitLab CI with cloud integrations (AWS OIDC, EKS)
+- **Kafka and deployments** — why Kafka decouples services, how it enables independent deploys, `kafka-consumer-groups.sh` for monitoring lag
 
 ---
 

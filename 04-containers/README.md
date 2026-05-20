@@ -8,13 +8,24 @@
 
 ## Topics in This Section
 
-| File | Topic | Level |
-|------|-------|-------|
-| [Docker basics](javascript:dvGo('docker-basics')) | Docker fundamentals | Beginner |
-| [Docker advanced](javascript:dvGo('docker-advanced')) | Multi-stage builds, Compose, security | Intermediate |
-| [Kubernetes basics](javascript:dvGo('kubernetes-basics')) | Kubernetes concepts and kubectl | Intermediate |
-| [Kubernetes production](javascript:dvGo('kubernetes-production')) | Production: HPA, PDB, resource limits | Advanced |
-| [Helm.md](javascript:dvGo('helm')) | Helm — Package manager for Kubernetes | Intermediate |
+| Guide | Content | Level |
+|-------|---------|-------|
+| [Docker Basics](javascript:dvGo('docker-basics')) | Images, Dockerfile, volumes, networking, multi-stage builds | Beginner |
+| [Kubernetes Basics](javascript:dvGo('kubernetes-basics')) | Components, objects, kubectl, YAML, HPA, debugging, interview Q&A | Intermediate |
+
+---
+
+## What You Learn in Kubernetes Basics
+
+The Kubernetes guide covers everything interviewers actually ask:
+
+- **Cluster components** — Control Plane (apiserver, etcd, scheduler, controller-manager) and Worker Node (kubelet, kube-proxy, container runtime) with a full diagram
+- **Object hierarchy** — Namespace → Deployment → ReplicaSet → **Pod** (smallest deployable unit) → Container
+- **Entering a container** — `kubectl exec -it <pod> -- bash/sh`, what to do inside, debug technique for crashing containers
+- **Reading logs** — `kubectl logs`, `--previous`, `--follow`, multi-container pods, label selectors
+- **Debugging CrashLoopBackOff** — exit codes, OOMKilled, liveness vs readiness probes
+- **HPA, rolling updates, zero-downtime deploys** — full YAML examples with explained fields
+- **Interview Q&A** — Pod vs Deployment, rolling updates, secrets, ConfigMaps
 
 ---
 
@@ -39,15 +50,17 @@ Developer writes code
         ↓
 Dockerfile defines how to build the image
         ↓
-docker build creates a Docker image
+docker build → Docker image
         ↓
-Image is pushed to a registry (ECR, GHCR, Docker Hub)
+Image pushed to registry (AWS ECR, GHCR, Docker Hub)
         ↓
-Kubernetes pulls the image and runs it as a Pod
+Kubernetes pulls image → runs it as a Pod
         ↓
-Service exposes the Pod to other Pods or the internet
+Service exposes the Pod (ClusterIP / LoadBalancer / NodePort)
         ↓
 Deployment manages rolling updates and rollbacks
+        ↓
+HPA scales pods up/down based on CPU/memory
 ```
 
 ---

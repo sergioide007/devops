@@ -366,4 +366,4 @@ docker images | grep my-api | tail -n +4 | awk '{print $3}' | xargs docker rmi
 
 ---
 
-[← Back to Section](./README.md) | [Next: Docker Advanced →](./02-docker-advanced.md)
+[← Section Overview](javascript:dvGo('overview')) | [Next: Kubernetes Basics →](javascript:dvGo('kubernetes-basics'))

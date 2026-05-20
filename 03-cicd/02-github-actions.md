@@ -407,4 +407,4 @@ jobs:
 
 ---
 
-[← Previous: Jenkins](./01-jenkins.md) | [Next: GitLab CI/CD →](./03-gitlab-cicd.md)
+[← Previous: Jenkins](javascript:dvGo('jenkins')) | [Next: GitLab CI/CD →](javascript:dvGo('gitlab-cicd'))
