@@ -12,38 +12,19 @@
 
 ## Platform Architecture
 
-```
-Developer pushes code
-        │
-        ▼
-┌───────────────┐
-│     GITEA     │  ← Self-hosted GitHub alternative
-│  (port 3000)  │  ← Your code repos, PRs, webhooks
-└───────┬───────┘
-        │ Webhook (push event → trigger Jenkins)
-        ▼
-┌───────────────┐
-│    JENKINS    │  ← CI/CD orchestrator
-│  (port 8080)  │  ← Builds, tests, security scans
-└───────┬───────┘
-        │ Upload artifacts
-   ┌────┴────┐
-   │         │
-   ▼         ▼
-┌────────┐ ┌──────────┐
-│ NEXUS  │ │SONARQUBE │
-│(8081)  │ │ (9000)   │
-│Maven   │ │Code      │
-│npm     │ │Quality   │
-│Docker  │ │Analysis  │
-└────┬───┘ └──────────┘
-     │ Docker image
-     ▼
-┌───────────────────────────┐
-│     KUBERNETES            │
-│  (K3s on-premise          │
-│   OR EKS on AWS)          │
-└───────────────────────────┘
+```mermaid
+flowchart LR
+    DEV["Developer\ngit push"]
+    GITEA["GITEA\nSelf-hosted Git\nport 3000"]
+    JENKINS["JENKINS\nCI/CD Orchestrator\nport 8080"]
+    NEXUS["NEXUS\nMaven, npm, Docker\nport 8081"]
+    SONAR["SONARQUBE\nCode Quality\nport 9000"]
+    K8S["KUBERNETES\nK3s on-premise\nor AWS EKS"]
+    DEV -->|git push| GITEA
+    GITEA -->|"webhook trigger"| JENKINS
+    JENKINS -->|"upload artifacts"| NEXUS
+    JENKINS -->|"code analysis"| SONAR
+    NEXUS -->|"Docker image"| K8S
 ```
 
 ---

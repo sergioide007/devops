@@ -138,3 +138,34 @@ header{position:sticky;top:0;z-index:200;background:rgba(5,10,20,.95);backdrop-f
   .breadcrumb{font-size:10px}
   .content{padding:20px 16px}
 }
+
+/* ── DIAGRAM WIDGET ──────────────────────────────────────────────── */
+.diagram-widget{margin:0 0 28px;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--s1);box-shadow:0 4px 24px rgba(0,0,0,.4)}
+.diagram-toolbar{display:flex;align-items:center;justify-content:space-between;padding:8px 14px;background:var(--s2);border-bottom:1px solid var(--border);flex-wrap:wrap;gap:8px;min-height:38px}
+.diagram-tb-left,.diagram-tb-right{display:flex;align-items:center;gap:6px}
+.diagram-badge{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.diagram-chip{font-family:var(--mono);font-size:10px;color:var(--signal);background:rgba(0,229,160,.07);border:1px solid rgba(0,229,160,.22);border-radius:4px;padding:1px 8px;letter-spacing:.04em}
+.diag-sep{color:var(--s4);font-size:14px;margin:0 2px}
+.diag-btn{font-family:var(--mono);font-size:10px;color:var(--muted);background:none;border:1px solid var(--border);border-radius:5px;padding:3px 9px;cursor:pointer;transition:color .15s,border-color .15s,background .15s;white-space:nowrap;line-height:1.4}
+.diag-btn:hover{color:var(--signal);border-color:rgba(0,229,160,.35);background:rgba(0,229,160,.04)}
+.diag-btn-icon{padding:3px 7px;min-width:26px;text-align:center}
+
+.diagram-canvas{position:relative;min-height:220px;height:500px;background:#060b12;overflow:hidden;cursor:grab;display:flex;align-items:flex-start;justify-content:center;padding:28px 20px 20px;user-select:none}
+.diagram-canvas:active{cursor:grabbing}
+
+.diagram-loading{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);display:flex;align-items:center;gap:10px;color:var(--muted);font-family:var(--mono);font-size:12px}
+.diagram-hint{position:absolute;bottom:8px;right:12px;font-family:var(--mono);font-size:9px;color:rgba(255,255,255,.18);pointer-events:none;letter-spacing:.05em}
+.diagram-error{padding:20px 24px;color:var(--warn);font-family:var(--mono);font-size:12px;line-height:1.7}
+.diagram-error code{display:block;margin-top:8px;font-size:11px;color:rgba(255,255,255,.45);white-space:pre-wrap;background:none;border:none;padding:0}
+
+/* Mermaid SVG overrides */
+.diagram-canvas svg{display:block;width:100%;height:auto;max-height:540px}
+
+/* Animated flow dot — glow via SVG filter */
+.diag-flow-dot{filter:drop-shadow(0 0 5px #00e5a0) drop-shadow(0 0 10px rgba(0,229,160,.3));pointer-events:none}
+
+@media(max-width:640px){
+  .diagram-toolbar{padding:6px 10px}
+  .diagram-canvas{padding:18px 10px 12px;height:380px}
+  .diag-btn{font-size:9px;padding:2px 7px}
+}

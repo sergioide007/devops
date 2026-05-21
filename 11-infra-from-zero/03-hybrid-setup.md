@@ -8,33 +8,29 @@
 
 ## Hybrid Architecture
 
-```
-CORPORATE NETWORK (on-premise)
-192.168.0.0/16
-
-┌──────────────────────────────────────┐
-│  Legacy systems (must stay on-prem)  │
-│  Mainframe / Oracle / SAP            │
-│  Sensitive PII data                  │
-│  SWIFT financial messaging           │
-│  K3s cluster (batch processing)      │
-└──────────────┬───────────────────────┘
-               │ AWS Site-to-Site VPN
-               │ OR AWS Direct Connect
-               │ (1-10 Gbps dedicated)
-┌──────────────▼───────────────────────┐
-│  AWS VPC 10.0.0.0/16                 │
-│  EKS (customer-facing APIs)          │
-│  Lambda (event-driven processing)    │
-│  S3 (document storage)               │
-│  CloudFront (global CDN)             │
-└──────────────────────────────────────┘
-
-UNIFIED CONTROL PLANE:
-  - ArgoCD (GitOps both clusters)
-  - Grafana (metrics from both)
-  - Ansible (configure both)
-  - Terraform (provision both)
+```mermaid
+graph TB
+    subgraph ONPREM["Corporate Network  192.168.0.0/16"]
+        LEGACY["Legacy Systems\nMainframe, Oracle, SAP\nPII data, SWIFT"]
+        K3S["K3s Cluster\nbatch processing"]
+    end
+    VPN["AWS Direct Connect\nor Site-to-Site VPN\n1 to 10 Gbps"]
+    subgraph CLOUD["AWS Cloud  10.0.0.0/16"]
+        EKS["EKS\nCustomer-facing APIs"]
+        LAM["Lambda\nEvent-driven"]
+        S3F["S3 + CloudFront\nDocuments, CDN"]
+    end
+    subgraph CTRL["Unified Control Plane"]
+        ARGOCD["ArgoCD\nGitOps"]
+        GRAF["Grafana\nObservability"]
+        TF["Terraform, Ansible\nProvisioning"]
+    end
+    LEGACY --> VPN
+    K3S --> VPN
+    VPN --> EKS
+    VPN --> LAM
+    CTRL -.->|manages| ONPREM
+    CTRL -.->|manages| CLOUD
 ```
 
 ---

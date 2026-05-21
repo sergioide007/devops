@@ -8,14 +8,21 @@
 
 ## Phase 0: AWS Account Setup (Multi-Account Strategy)
 
-```
-AWS Organization
-├── Management Account (billing, SCPs only)
-├── Security Account (GuardDuty, Security Hub, CloudTrail)
-├── Shared Services Account (ECR, Nexus, Artifactory)
-├── Production Account
-├── Staging Account
-└── Development Account (individual sandboxes)
+```mermaid
+graph TD
+    ORG["AWS Organization\nManagement Root"]
+    MGT["Management Account\nbilling, SCPs only"]
+    SEC["Security Account\nGuardDuty, Security Hub\nCloudTrail"]
+    SHS["Shared Services\nECR, Nexus, Artifactory"]
+    PROD["Production Account"]
+    STAG["Staging Account"]
+    DEV["Development Account\nindividual sandboxes"]
+    ORG --> MGT
+    ORG --> SEC
+    ORG --> SHS
+    ORG --> PROD
+    ORG --> STAG
+    ORG --> DEV
 ```
 
 ```bash

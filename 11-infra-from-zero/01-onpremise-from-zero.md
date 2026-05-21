@@ -8,18 +8,22 @@
 
 ## Architecture We Will Build
 
-```
-On-Premise Network: 192.168.56.0/24
-
-┌─────────────────────────────────────────────────┐
-│  control01  192.168.56.10  — Kubernetes master   │
-│  worker01   192.168.56.11  — Kubernetes worker   │
-│  worker02   192.168.56.12  — Kubernetes worker   │
-│  services   192.168.56.20  — Jenkins, Nexus,     │
-│                               SonarQube, Gitea   │
-│  monitoring 192.168.56.30  — Prometheus, Grafana,│
-│                               Loki, AlertManager │
-└─────────────────────────────────────────────────┘
+```mermaid
+graph TB
+    subgraph NET["On-Premise Network  192.168.56.0/24"]
+        CP["control01\n192.168.56.10\nKubernetes master"]
+        W1["worker01\n192.168.56.11\nK8s worker"]
+        W2["worker02\n192.168.56.12\nK8s worker"]
+        SVC["services  192.168.56.20\nJenkins, Nexus\nSonarQube, Gitea"]
+        MON["monitoring  192.168.56.30\nPrometheus, Grafana\nLoki, AlertManager"]
+    end
+    CP -->|kubeadm join| W1
+    CP -->|kubeadm join| W2
+    SVC -->|CI/CD deploy| CP
+    MON -.->|scrape metrics| CP
+    MON -.->|scrape metrics| W1
+    MON -.->|scrape metrics| W2
+    MON -.->|scrape metrics| SVC
 ```
 
 ---

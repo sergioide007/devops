@@ -145,6 +145,9 @@
     // Post-process: add copy buttons to code blocks
     addCopyButtons();
 
+    // Render interactive diagrams (Mermaid etc.) — defined in diagram.js
+    if (typeof dvProcessDiagrams === 'function') dvProcessDiagrams(contentArea);
+
     // Scroll to top
     contentArea.scrollTop = 0;
     window.scrollTo({ top: 0, behavior: 'smooth' });

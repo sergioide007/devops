@@ -23,7 +23,7 @@ alpaquitay-ai is an all-in-one AI coding assistant for VS Code with:
 # Open VS Code → Extensions → Search "alpaquitay-ai" → Install
 
 # Option 2: From VSIX file (local build)
-cd C:\Users\Alex\Documents\publisher\alpaquitay-ai
+cd alpaquitay-ai
 npm install
 npm run compile
 npx @vscode/vsce package
