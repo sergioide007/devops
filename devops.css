@@ -119,6 +119,16 @@ header{position:sticky;top:0;z-index:200;background:rgba(5,10,20,.95);backdrop-f
 .doc-nav-btn.next{text-align:right}
 .doc-nav-dir{font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
 .doc-nav-title{font-size:13px;color:var(--text);font-weight:600;line-height:1.4}
+.doc-nav-section{border-color:rgba(0,229,160,.2);background:rgba(0,229,160,.04)}
+.doc-nav-section .doc-nav-dir{color:var(--signal)}
+.doc-nav-section:hover{border-color:rgba(0,229,160,.5);background:rgba(0,229,160,.09)}
+
+/* SECTION PICKER */
+.section-picker{margin-top:14px;padding-top:14px;border-top:1px solid var(--border)}
+.picker-label{display:block;font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:8px}
+.picker-select{width:100%;background:var(--s2);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:var(--mono);font-size:11px;padding:7px 10px;cursor:pointer;outline:none;appearance:none;-webkit-appearance:none;transition:border-color .15s}
+.picker-select:hover,.picker-select:focus{border-color:rgba(0,229,160,.35);color:var(--signal)}
+.picker-select option{background:var(--s2);color:var(--text)}
 
 /* MOBILE */
 @media(max-width:900px){

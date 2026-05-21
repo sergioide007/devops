@@ -347,7 +347,7 @@ footer{background:var(--ink);border-top:1px solid var(--border);padding:48px 24p
 </section>
 
 <!-- LEARNING PATH -->
-<section class="path-section" id="foundations">
+<section class="path-section" id="learning-path">
   <div class="inner">
     <div class="section-label">Learning Path</div>
     <h2 class="section-h2">Beginner → Expert progression</h2>
@@ -409,7 +409,7 @@ footer{background:var(--ink);border-top:1px solid var(--border);padding:48px 24p
 </section>
 
 <!-- CALLOUT -->
-<section id="compliance">
+<section id="cta">
   <div class="inner">
     <div class="callout">
       <h2>Built with <span style="color:var(--signal)">Alpaquitay AI</span> + SpecSolid methodology</h2>
@@ -474,7 +474,7 @@ const SECTIONS = [
 ];
 
 document.getElementById('cardsGrid').innerHTML = SECTIONS.map(s => `
-  <a href="${s.slug}/" class="card">
+  <a href="${s.slug}/" class="card" id="${s.slug}">
     <div class="card-head">
       <span class="card-num">Section ${s.num}</span>
       <span class="card-icon">${s.icon}</span>

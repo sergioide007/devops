@@ -8,6 +8,28 @@
   const cfg = window.DEVOPS_SECTION;
   if (!cfg) { console.error('DEVOPS_SECTION not defined'); return; }
 
+  // ── ALL SECTIONS (for picker + next-section navigation) ─────────
+  const ALL_SECTIONS = [
+    { slug:'foundations', title:'01 — Foundations' },
+    { slug:'cloud',       title:'02 — Cloud & AWS' },
+    { slug:'cicd',        title:'03 — CI/CD Pipelines' },
+    { slug:'containers',  title:'04 — Containers & K8s' },
+    { slug:'iac',         title:'05 — Infrastructure as Code' },
+    { slug:'monitoring',  title:'06 — Monitoring & Observability' },
+    { slug:'advanced',    title:'07 — Advanced Topics' },
+    { slug:'interview',   title:'08 — Interview Prep' },
+    { slug:'experience',  title:'09 — Real-World Experience' },
+    { slug:'tools',       title:'10 — Essential Tools' },
+    { slug:'infra-zero',  title:'11 — Infra from Zero' },
+    { slug:'compliance',  title:'12 — Compliance & Standards' },
+  ];
+
+  // Detect current section from URL (reliable regardless of cfg.path naming)
+  const urlSlug = window.location.pathname.replace(/\/$/, '').split('/').filter(Boolean).pop() || '';
+  const currentSectionIdx = ALL_SECTIONS.findIndex(s => s.slug === urlSlug);
+  const nextSection = currentSectionIdx >= 0 && currentSectionIdx < ALL_SECTIONS.length - 1
+    ? ALL_SECTIONS[currentSectionIdx + 1] : null;
+
   // ── DOM REFS ────────────────────────────────────────────────────
   const sidebar     = document.getElementById('dvSidebar');
   const overlay     = document.getElementById('dvOverlay');
@@ -38,6 +60,23 @@
         <span class="ni-num">${String(i + 1).padStart(2, '0')}</span>
         <span>${f.title}</span>
       </a>`).join('');
+  }
+
+  // ── SECTION PICKER ──────────────────────────────────────────────
+  function buildSectionPicker() {
+    const foot = document.querySelector('.sidebar-foot');
+    if (!foot) return;
+    const picker = document.createElement('div');
+    picker.className = 'section-picker';
+    picker.innerHTML = `
+      <label class="picker-label">Jump to section</label>
+      <select class="picker-select" onchange="if(this.value) window.location='../'+this.value+'/'">
+        <option value="">— Choose section —</option>
+        ${ALL_SECTIONS.map(s =>
+          `<option value="${s.slug}"${s.slug === urlSlug ? ' selected' : ''}>${s.title}</option>`
+        ).join('')}
+      </select>`;
+    foot.appendChild(picker);
   }
 
   // ── LOAD FILE ───────────────────────────────────────────────────
@@ -111,7 +150,15 @@
              <span class="doc-nav-dir">Next →</span>
              <span class="doc-nav-title">${next.title}</span>
            </a>`
-        : '<div></div>'}
+        : nextSection
+          ? `<a class="doc-nav-btn next doc-nav-section" href="../${nextSection.slug}/">
+               <span class="doc-nav-dir">Next Section →</span>
+               <span class="doc-nav-title">${nextSection.title}</span>
+             </a>`
+          : `<a class="doc-nav-btn next doc-nav-section" href="../">
+               <span class="doc-nav-dir">Curriculum complete</span>
+               <span class="doc-nav-title">← Back to DevOps Hub</span>
+             </a>`}
     </div>`;
 
     contentArea.innerHTML = `
@@ -222,6 +269,7 @@
   function init() {
     marked.use({ gfm: true, breaks: false });
     buildNav();
+    buildSectionPicker();
 
     // Load from URL hash or default to first file
     const hash = location.hash.replace('#', '');
