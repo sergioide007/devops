@@ -1,0 +1,12 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Real files and directories are served as-is
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+
+  # Clean URLs: /section/file-slug → /section/index.html
+  # Only matches sections (start with a-z) — numbered dirs like /01-foundations/ are excluded
+  RewriteRule ^([a-z][a-z0-9-]*)/([a-z][a-z0-9-]*)/?$ /$1/index.html [L]
+</IfModule>

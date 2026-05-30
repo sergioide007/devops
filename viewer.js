@@ -56,7 +56,7 @@
   // ── BUILD NAV ───────────────────────────────────────────────────
   function buildNav() {
     sidebarNav.innerHTML = cfg.files.map((f, i) => `
-      <a class="nav-item" data-idx="${i}" href="#${f.slug}" onclick="dvLoad(${i});return false">
+      <a class="nav-item" data-idx="${i}" href="./${f.slug}" onclick="dvLoad(${i});return false">
         <span class="ni-num">${String(i + 1).padStart(2, '0')}</span>
         <span>${f.title}</span>
       </a>`).join('');
@@ -80,7 +80,7 @@
   }
 
   // ── LOAD FILE ───────────────────────────────────────────────────
-  window.dvLoad = function(idx) {
+  window.dvLoad = function(idx, skipHistory) {
     const file = cfg.files[idx];
     if (!file) return;
     currentFile = idx;
@@ -93,8 +93,8 @@
     // Update breadcrumb
     if (breadFile) breadFile.textContent = file.title;
 
-    // Update URL hash
-    history.replaceState(null, '', '#' + file.slug);
+    // Update URL (path-based, skip on popstate/init to avoid duplicate history entries)
+    if (!skipHistory) history.pushState({idx}, '', './' + file.slug);
 
     // Close mobile sidebar
     sidebar.classList.remove('open');
@@ -140,13 +140,13 @@
 
     const navHTML = `<div class="doc-nav">
       ${prev
-        ? `<a class="doc-nav-btn" href="#${prev.slug}" onclick="dvLoad(${idx-1});return false">
+        ? `<a class="doc-nav-btn" href="./${prev.slug}" onclick="dvLoad(${idx-1});return false">
              <span class="doc-nav-dir">← Previous</span>
              <span class="doc-nav-title">${prev.title}</span>
            </a>`
         : '<div></div>'}
       ${next
-        ? `<a class="doc-nav-btn next" href="#${next.slug}" onclick="dvLoad(${idx+1});return false">
+        ? `<a class="doc-nav-btn next" href="./${next.slug}" onclick="dvLoad(${idx+1});return false">
              <span class="doc-nav-dir">Next →</span>
              <span class="doc-nav-title">${next.title}</span>
            </a>`
@@ -185,7 +185,7 @@
       const filename = href.split('/').pop();
       const fileIdx = cfg.files.findIndex(f => f.file === filename);
       if (fileIdx === -1) return; // unknown file — let browser handle it
-      a.href = '#' + cfg.files[fileIdx].slug;
+      a.href = './' + cfg.files[fileIdx].slug;
       a.addEventListener('click', e => { e.preventDefault(); dvLoad(fileIdx); });
     });
 
@@ -271,10 +271,18 @@
     buildNav();
     buildSectionPicker();
 
-    // Load from URL hash or default to first file
-    const hash = location.hash.replace('#', '');
-    const bySlug = hash ? cfg.files.findIndex(f => f.slug === hash) : -1;
-    dvLoad(bySlug >= 0 ? bySlug : 0);
+    // Load from URL path or default to first file
+    const pathSlug = location.pathname.replace(/\/$/, '').split('/').pop() || '';
+    const bySlug = pathSlug ? cfg.files.findIndex(f => f.slug === pathSlug) : -1;
+    const startIdx = bySlug >= 0 ? bySlug : 0;
+    history.replaceState({idx: startIdx}, '', location.pathname);
+    dvLoad(startIdx, true);
+
+    // Browser back/forward navigation
+    window.addEventListener('popstate', e => {
+      const idx = e.state && e.state.idx != null ? e.state.idx : 0;
+      dvLoad(idx, true);
+    });
   }
 
   // Wait for marked.js to be available
