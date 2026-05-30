@@ -271,11 +271,14 @@
     buildNav();
     buildSectionPicker();
 
-    // Load from URL path or default to first file
-    const pathSlug = location.pathname.replace(/\/$/, '').split('/').pop() || '';
-    const bySlug = pathSlug ? cfg.files.findIndex(f => f.slug === pathSlug) : -1;
-    const startIdx = bySlug >= 0 ? bySlug : 0;
-    history.replaceState({idx: startIdx}, '', location.pathname);
+    // Load from URL path or ?slug= query param (set by 404.html redirect on GitHub Pages)
+    const querySlug = new URLSearchParams(location.search).get('slug') || '';
+    const pathSlug  = querySlug || location.pathname.replace(/\/$/, '').split('/').pop() || '';
+    const bySlug    = pathSlug ? cfg.files.findIndex(f => f.slug === pathSlug) : -1;
+    const startIdx  = bySlug >= 0 ? bySlug : 0;
+    // If arriving via 404 redirect, clean up ?slug= → restore clean path
+    const cleanPath = querySlug ? './' + cfg.files[startIdx].slug : location.pathname;
+    history.replaceState({idx: startIdx}, '', cleanPath);
     dvLoad(startIdx, true);
 
     // Browser back/forward navigation
