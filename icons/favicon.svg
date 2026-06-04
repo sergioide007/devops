@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+
+    <!-- Neon glow applied only to the front (Entities) layer -->
+    <filter id="glow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="0.35" result="b1"/>
+      <feFlood flood-color="#00d090" flood-opacity="0.55" result="c1"/>
+      <feComposite in="c1" in2="b1" operator="in" result="h1"/>
+
+      <feGaussianBlur in="SourceAlpha" stdDeviation="0.10" result="b2"/>
+      <feFlood flood-color="#80ffe0" flood-opacity="0.85" result="c2"/>
+      <feComposite in="c2" in2="b2" operator="in" result="h2"/>
+
+      <feMerge>
+        <feMergeNode in="h1"/>
+        <feMergeNode in="h2"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+  </defs>
+
+  <!-- Background -->
+  <rect width="32" height="32" rx="7" ry="7" fill="#050a14"/>
+
+  <!-- 5 parallel S shadows — Clean Architecture depth illusion
+       One S letterform, 5 offset copies rendered back→front.
+       Each copy represents one layer of Clean Architecture.
+       The innermost layer (Entities) is the bright "face"; outer layers
+       are progressively darker "shadows" behind it.
+
+       S construction: two tangent circles r=4, meeting at cx,cy.
+       Path per layer: M cx+4,cy-4.8  A 4 4 0 1 0 cx,cy  A 4 4 0 1 1 cx-4,cy+4.8
+
+       Step between layers: Δ(+0.7, +0.7) toward bottom-right (= "deeper behind").
+       Visual center of mass: (14.6 + 2×0.7, 14.6 + 2×0.7) = (16, 16). -->
+
+  <!-- L1 Frameworks & Drivers (furthest back) — cx=17.4, cy=17.4 -->
+  <path d="M 21.4,12.6 A 4 4 0 1 0 17.4,17.4 A 4 4 0 1 1 13.4,22.2"
+        stroke="#007050" stroke-width="0.58" stroke-linecap="butt" fill="none"/>
+
+  <!-- L2 Interface Adapters — cx=16.7, cy=16.7 -->
+  <path d="M 20.7,11.9 A 4 4 0 1 0 16.7,16.7 A 4 4 0 1 1 12.7,21.5"
+        stroke="#00aa78" stroke-width="0.58" stroke-linecap="butt" fill="none"/>
+
+  <!-- L3 Application Use Cases — cx=16.0, cy=16.0 -->
+  <path d="M 20.0,11.2 A 4 4 0 1 0 16.0,16.0 A 4 4 0 1 1 12.0,20.8"
+        stroke="#00e5a0" stroke-width="0.58" stroke-linecap="butt" fill="none"/>
+
+  <!-- L4 Domain Services — cx=15.3, cy=15.3 -->
+  <path d="M 19.3,10.5 A 4 4 0 1 0 15.3,15.3 A 4 4 0 1 1 11.3,20.1"
+        stroke="#50f2c4" stroke-width="0.58" stroke-linecap="butt" fill="none"/>
+
+  <!-- L5 Entities / Domain Core (front face, brightest) — cx=14.6, cy=14.6 -->
+  <path d="M 18.6,9.8 A 4 4 0 1 0 14.6,14.6 A 4 4 0 1 1 10.6,19.4"
+        stroke="#a0ffe8" stroke-width="0.58" stroke-linecap="butt" fill="none"
+        filter="url(#glow)"/>
+
+  <!-- Hairline border -->
+  <rect x="0.5" y="0.5" width="31" height="31" rx="6.5" ry="6.5"
+        fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+
+</svg>
